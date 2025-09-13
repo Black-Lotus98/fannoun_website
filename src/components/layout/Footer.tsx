@@ -62,7 +62,7 @@ export default function Footer() {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-3 mb-6"
             >
-              <div className="bg-[#F07B09] p-3 rounded-lg">
+              <div className="bg-primary p-3 rounded-lg">
                 <Truck className="text-white w-8 h-8" />
               </div>
               <div>
@@ -80,7 +80,7 @@ export default function Footer() {
                   href={social.href}
                   whileHover={{ scale: 1.2, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#F07B09] transition-colors duration-300"
+                  className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300"
                   aria-label={social.label}
                 >
                   <social.icon className="text-white" />
@@ -135,7 +135,7 @@ export default function Footer() {
                 whileHover={{ x: 5 }}
                 className="flex items-start space-x-3"
               >
-                <Phone className="w-5 h-5 text-[#f6a201] mt-1" />
+                <Phone className="w-5 h-5 text-primary-light mt-1" />
                 <div>
                   <p className="text-gray-400">+962 6 416 9422</p>
                   <p className="text-gray-400">+962 6 416 1797</p>
@@ -147,7 +147,7 @@ export default function Footer() {
                 whileHover={{ x: 5 }}
                 className="flex items-start space-x-3"
               >
-                <Mail className="w-5 h-5 text-[#f6a201] mt-1" />
+                <Mail className="w-5 h-5 text-primary-light mt-1" />
                 <p className="text-gray-400">info@fannoun.com</p>
               </motion.div>
 
@@ -155,7 +155,7 @@ export default function Footer() {
                 whileHover={{ x: 5 }}
                 className="flex items-start space-x-3"
               >
-                <MapPin className="w-5 h-5 text-[#f6a201] mt-1" />
+                <MapPin className="w-5 h-5 text-primary-light mt-1" />
                 <p className="text-gray-400">Amman, Jordan</p>
               </motion.div>
             </div>
@@ -174,7 +174,7 @@ export default function Footer() {
               © {currentYear} FANNOUN. {tCommon('footer.rights')}
             </p>
             <p className="text-gray-400 text-sm">
-              {tCommon('footer.developedBy')} <span className="text-[#f6a201]">ISTANBUL_IT</span>
+              {tCommon('footer.developedBy')} <span className="text-primary-light">ISTANBUL_IT</span>
             </p>
           </div>
         </motion.div>

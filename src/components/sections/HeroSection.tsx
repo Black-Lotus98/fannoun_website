@@ -49,7 +49,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-24">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-32 lg:pt-40">
       {/* Sophisticated Background with Multiple Layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
       
@@ -94,23 +94,23 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid lg:grid-cols-2 gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
         >
           {/* Content */}
-          <div className="text-white space-y-8">
+          <div className="text-white space-y-6 lg:space-y-8">
             {/* Company Badge */}
             <motion.div variants={itemVariants} className="inline-flex items-center space-x-3">
-              <div className="w-2 h-2 bg-[#F07B09] rounded-full animate-pulse"></div>
-              <span className="px-6 py-3 bg-gradient-to-r from-[#F07B09]/20 to-[#f6a201]/20 backdrop-blur-sm border border-[#F07B09]/30 text-[#f6a201] font-semibold rounded-full text-sm">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-primary/20 to-primary-light/20 backdrop-blur-sm border border-primary/30 text-primary-light font-semibold rounded-full text-xs sm:text-sm">
                 {tHome('hero.badge')}
               </span>
             </motion.div>
 
             {/* Main Headline */}
-            <motion.div variants={itemVariants} className="space-y-4">
-              <h1 className="text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
+            <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
+              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
                 <span className="block text-white">{tHome('hero.title')}</span>
-                <span className="block bg-gradient-to-r from-[#F07B09] to-[#f6a201] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
                   TRANSPORT
                 </span>
               </h1>
@@ -119,7 +119,7 @@ export default function HeroSection() {
             {/* Subtitle */}
             <motion.p 
               variants={itemVariants}
-              className="text-2xl lg:text-3xl font-light text-white/90 leading-relaxed max-w-2xl"
+              className="text-lg sm:text-2xl lg:text-3xl font-light text-white/90 leading-relaxed max-w-2xl"
             >
               {tHome('hero.subtitle')}
             </motion.p>
@@ -127,7 +127,7 @@ export default function HeroSection() {
             {/* Description */}
             <motion.p 
               variants={itemVariants}
-              className="text-lg text-white/80 max-w-2xl leading-relaxed"
+              className="text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed"
             >
               {tHome('hero.description')}
             </motion.p>
@@ -135,21 +135,21 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-6 pt-4"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2 sm:pt-4"
             >
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-10 py-5 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-2xl text-lg shadow-2xl hover:shadow-[#F07B09]/25 transition-all duration-300 overflow-hidden"
+                className="group relative px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-primary to-primary-light text-white font-bold rounded-2xl text-base sm:text-lg shadow-2xl hover:shadow-primary/25 transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10">{tHome('hero.cta.primary')}</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#f6a201] to-[#F07B09] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.button>
               
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-2xl text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+                className="px-6 sm:px-10 py-4 sm:py-5 border-2 border-white/30 text-white font-semibold rounded-2xl text-base sm:text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
               >
                 {tHome('hero.cta.secondary')}
               </motion.button>
@@ -158,19 +158,19 @@ export default function HeroSection() {
             {/* Stats Grid */}
             <motion.div 
               variants={itemVariants}
-              className="grid grid-cols-3 gap-8 pt-12"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 pb-20 sm:pb-12"
             >
               <div className="text-center group">
-                <div className="text-4xl font-black text-[#F07B09] mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
-                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.years')}</div>
+                <div className="text-3xl sm:text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
+                <div className="text-xs sm:text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.years')}</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl font-black text-[#f6a201] mb-2 group-hover:scale-110 transition-transform duration-300">200+</div>
-                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.trucks')}</div>
+                <div className="text-3xl sm:text-4xl font-black text-primary-light mb-2 group-hover:scale-110 transition-transform duration-300">200+</div>
+                <div className="text-xs sm:text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.trucks')}</div>
               </div>
               <div className="text-center group">
-                <div className="text-4xl font-black text-[#F07B09] mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
-                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.reliability')}</div>
+                <div className="text-3xl sm:text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
+                <div className="text-xs sm:text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.reliability')}</div>
               </div>
             </motion.div>
           </div>
@@ -178,7 +178,7 @@ export default function HeroSection() {
           {/* Sophisticated Transportation Visual */}
           <motion.div 
             variants={truckVariants}
-            className="relative"
+            className="relative hidden lg:block"
           >
             <div className="relative w-full h-96 lg:h-[600px]">
               {/* Main Transportation Scene */}
@@ -191,7 +191,7 @@ export default function HeroSection() {
                   {/* Sophisticated Truck Design */}
                   <div className="relative w-96 h-48">
                     {/* Truck Cab - More Realistic */}
-                    <div className="absolute left-0 top-4 w-32 h-36 bg-gradient-to-br from-[#F07B09] to-[#f6a201] rounded-2xl shadow-2xl">
+                    <div className="absolute left-0 top-4 w-32 h-36 bg-gradient-to-br from-primary to-primary-light rounded-2xl shadow-2xl">
                       <div className="absolute top-3 left-3 w-26 h-8 bg-white/20 rounded-lg"></div>
                       <div className="absolute top-12 left-3 w-26 h-6 bg-white/10 rounded"></div>
                       <div className="absolute bottom-3 left-3 w-26 h-4 bg-white/15 rounded"></div>
@@ -203,7 +203,7 @@ export default function HeroSection() {
                       <div className="absolute top-12 left-3 w-50 h-6 bg-white/20 rounded"></div>
                       <div className="absolute bottom-3 left-3 w-50 h-4 bg-white/25 rounded"></div>
                       {/* Fannoun Logo Placeholder */}
-                      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-gradient-to-r from-[#F07B09] to-[#f6a201] rounded text-white text-xs font-bold flex items-center justify-center">
+                      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-gradient-to-r from-primary to-primary-light rounded text-white text-xs font-bold flex items-center justify-center">
                         FANNOUN
                       </div>
                     </div>
@@ -217,7 +217,7 @@ export default function HeroSection() {
 
                   {/* Road with More Detail */}
                   <div className="absolute -bottom-12 left-0 right-0 h-6 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full shadow-xl"></div>
-                  <div className="absolute -bottom-9 left-0 right-0 h-0.5 bg-[#f6a201]"></div>
+                  <div className="absolute -bottom-9 left-0 right-0 h-0.5 bg-primary-light"></div>
                   <div className="absolute -bottom-8 left-0 right-0 h-0.5 bg-white/50"></div>
                 </div>
               </motion.div>
@@ -227,18 +227,18 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0, rotate: -180 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ delay: 1.5, duration: 1.2, ease: "easeOut" }}
-                className="absolute top-8 right-8 w-20 h-20 bg-gradient-to-br from-[#F07B09]/20 to-[#f6a201]/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-[#F07B09]/30 shadow-xl"
+                className="absolute top-8 right-8 w-20 h-20 bg-gradient-to-br from-primary/20 to-primary-light/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-primary/30 shadow-xl"
               >
-                <Ship className="text-[#f6a201] w-10 h-10" />
+                <Ship className="text-primary-light w-10 h-10" />
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, scale: 0, rotate: 180 }}
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 transition={{ delay: 2, duration: 1.2, ease: "easeOut" }}
-                className="absolute bottom-24 left-8 w-20 h-20 bg-gradient-to-br from-[#f6a201]/20 to-[#F07B09]/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-[#f6a201]/30 shadow-xl"
+                className="absolute bottom-24 left-8 w-20 h-20 bg-gradient-to-br from-primary-light/20 to-primary/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-primary-light/30 shadow-xl"
               >
-                <MapPin className="text-[#F07B09] w-10 h-10" />
+                <MapPin className="text-primary w-10 h-10" />
               </motion.div>
 
               <motion.div
@@ -255,13 +255,13 @@ export default function HeroSection() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 3, duration: 1 }}
-                className="absolute top-16 left-16 w-4 h-4 bg-[#F07B09] rounded-full animate-pulse"
+                className="absolute top-16 left-16 w-4 h-4 bg-primary rounded-full animate-pulse"
               />
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 3.2, duration: 1 }}
-                className="absolute bottom-32 right-16 w-3 h-3 bg-[#f6a201] rounded-full animate-pulse"
+                className="absolute bottom-32 right-16 w-3 h-3 bg-primary-light rounded-full animate-pulse"
               />
             </div>
           </motion.div>
@@ -284,7 +284,7 @@ export default function HeroSection() {
             <motion.div
               animate={{ y: [0, 16, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="w-1 h-4 bg-gradient-to-b from-[#F07B09] to-[#f6a201] rounded-full mt-2"
+              className="w-1 h-4 bg-gradient-to-b from-primary to-primary-light rounded-full mt-2"
             />
           </div>
           <motion.div

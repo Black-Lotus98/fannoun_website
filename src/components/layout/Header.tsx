@@ -11,7 +11,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const tHeader = useTranslations('header');
-  const tCommon = useTranslations('common');
   const pathname = usePathname();
 
   const navigation = [
@@ -48,20 +47,20 @@ export default function Header() {
         initial={{ opacity: 0, height: 0 }}
         animate={{ opacity: 1, height: 'auto' }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="bg-[#F07B09] text-white py-2 px-4"
+        className="bg-primary text-white py-2 px-4"
       >
         <div className="container mx-auto flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-[#f6a201]" />
+                <Phone className="w-4 h-4 text-primary-light" />
                 <span>+962 6 416 9422</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-[#f6a201]" />
+                <Mail className="w-4 h-4 text-primary-light" />
                 <span>info@fannoun.com</span>
               </div>
             </div>
-          <div className="text-[#f6a201]">
+          <div className="text-primary-light">
             {tHeader('tagline')}
           </div>
         </div>
@@ -76,7 +75,7 @@ export default function Header() {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-3"
             >
-              <div className="bg-[#F07B09] p-3 rounded-lg">
+              <div className="bg-primary p-3 rounded-lg">
                 <Truck className="text-white w-8 h-8" />
               </div>
               <div>
@@ -99,15 +98,15 @@ export default function Header() {
                     href={item.href}
                     className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive 
-                        ? 'text-[#F07B09]' 
-                        : 'text-gray-700 hover:text-[#F07B09]'
+                        ? 'text-primary' 
+                        : 'text-gray-700 hover:text-primary'
                     }`}
                   >
                     {item.name}
                     {isActive && (
                       <motion.div
                         layoutId="activeTab"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#F07B09]"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                         initial={false}
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
                       />
@@ -153,8 +152,8 @@ export default function Header() {
                         onClick={() => setIsMenuOpen(false)}
                         className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors duration-200 ${
                           isActive 
-                            ? 'text-[#F07B09] bg-orange-50' 
-                            : 'text-gray-700 hover:text-[#F07B09] hover:bg-gray-50'
+                            ? 'text-primary bg-primary-50' 
+                            : 'text-gray-700 hover:text-primary hover:bg-gray-50'
                         }`}
                       >
                         {item.name}

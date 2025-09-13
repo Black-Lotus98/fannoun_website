@@ -1,16 +1,71 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
-import { User, Truck, Wrench, Settings, Users, Award } from 'lucide-react';
+import Slider from 'react-slick';
+import { useSliderConfig } from '../../hooks/useSliderConfig';
+import TeamCard from './TeamCard';
+import { Users, Star, Award } from 'lucide-react';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+// Team members data
+const teamMembers = [
+  {
+    id: 'yaser-fannoun',
+    name: 'Yaser Fannoun',
+    position: 'General Manager',
+    description: 'Leading our transportation operations with over 20 years of experience in logistics and fleet management.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format',
+    colorVariant: 'primary' as const
+  },
+  {
+    id: 'naser-fannoun',
+    name: 'Naser Fannoun',
+    position: 'General Manager',
+    description: 'Overseeing strategic planning and business development to ensure continued growth and excellence.',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format',
+    colorVariant: 'secondary' as const
+  },
+  {
+    id: 'jamal-fannoun',
+    name: 'Jamal Fannoun',
+    position: 'General Manager',
+    description: 'Managing operations and ensuring the highest standards of service delivery across all our routes.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&auto=format',
+    colorVariant: 'accent' as const
+  },
+  {
+    id: 'kamal-fannoun',
+    name: 'Kamal Fannoun',
+    position: 'General Manager',
+    description: 'Coordinating logistics and maintaining our commitment to safety and reliability in every delivery.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&auto=format',
+    colorVariant: 'success' as const
+  },
+  {
+    id: 'alaa-fannoun',
+    name: 'Alaa Fannoun',
+    position: 'General Manager',
+    description: 'Driving innovation and technology integration to enhance our transportation solutions and customer experience.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&auto=format',
+    colorVariant: 'warning' as const
+  }
+];
 
 export default function TeamSection() {
-  const tHome = useTranslations('home');
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true
+  // const tHome = useTranslations('home');
+  const sliderConfig = useSliderConfig({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    infinite: true,
+    dots: false,
+    arrows: false,
+    pauseOnHover: true,
+    centerMode: false,
+    variableWidth: false,
+    adaptiveHeight: true
   });
 
   const containerVariants = {
@@ -19,7 +74,7 @@ export default function TeamSection() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
+        delayChildren: 0.3
       }
     }
   };
@@ -36,220 +91,105 @@ export default function TeamSection() {
     }
   };
 
-  const teamMembers = [
-    {
-      id: 'mohammed',
-      name: tHome('team.mohammed.name'),
-      position: tHome('team.mohammed.position'),
-      description: tHome('team.mohammed.description'),
-      icon: User,
-      color: 'from-[#F07B09] to-[#f6a201]',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-[#F07B09]',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format',
-    },
-    {
-      id: 'maintenance',
-      name: tHome('team.maintenance.name'),
-      position: tHome('team.maintenance.position'),
-      description: tHome('team.maintenance.description'),
-      icon: Wrench,
-      color: 'from-green-600 to-green-700',
-      bgColor: 'bg-green-50',
-      textColor: 'text-green-600',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format',
-    },
-    {
-      id: 'alaa',
-      name: tHome('team.alaa.name'),
-      position: tHome('team.alaa.position'),
-      description: tHome('team.alaa.description'),
-      icon: Settings,
-      color: 'from-orange-600 to-orange-700',
-      bgColor: 'bg-orange-50',
-      textColor: 'text-orange-600',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&auto=format',
-    }
-  ];
-
-  const stats = [
-    {
-      number: '50+',
-      label: tHome('team.stats.experience'),
-      icon: Award
-    },
-    {
-      number: '200+',
-      label: tHome('team.stats.trucks'),
-      icon: Truck
-    },
-    {
-      number: '100%',
-      label: tHome('team.stats.reliability'),
-      icon: Award
-    },
-    {
-      number: '24/7',
-      label: tHome('team.stats.support'),
-      icon: Users
-    }
-  ];
-
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-900 via-[#F07B09] to-gray-800">
+    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="container mx-auto px-4">
-        {/* Header */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-4xl lg:text-5xl font-bold text-white mb-6"
-          >
-            {tHome('team.title')}
-          </motion.h2>
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl text-white/90 max-w-3xl mx-auto"
-          >
-            {tHome('team.subtitle')}
-          </motion.p>
-        </motion.div>
-
-        {/* Team Members */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-3 gap-8 mb-20"
-        >
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.id}
-              variants={itemVariants}
-              whileHover={{ 
-                y: -10,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="group relative"
-            >
-              <div className={`${member.bgColor} rounded-2xl p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-100`}>
-                {/* Team Member Image */}
-                <div className="mb-6">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={400}
-                    height={400}
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                </div>
-                
-                {/* Icon */}
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                  className={`w-20 h-20 bg-gradient-to-r ${member.color} rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <member.icon className="text-white text-3xl" />
-                </motion.div>
-
-                {/* Content */}
-                <div className="mb-6">
-                  <h3 className={`text-2xl font-bold ${member.textColor} mb-2`}>
-                    {member.name}
-                  </h3>
-                  <p className="text-lg font-semibold text-gray-700 mb-4">
-                    {member.position}
-                  </p>
-                  <p className="text-gray-600 leading-relaxed">
-                    {member.description}
-                  </p>
-                </div>
-
-                {/* Decorative Element */}
-                <div className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r ${member.color} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Stats Section */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="bg-white/10 backdrop-blur-md rounded-3xl p-12"
-        >
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">
-              {tHome('team.stats.title')}
-            </h3>
-            <p className="text-lg text-white/90">
-              {tHome('team.stats.subtitle')}
+          {/* Section Header */}
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="inline-flex items-center space-x-3 mb-4">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+              <span className="px-6 py-3 bg-gradient-to-r from-primary/20 to-primary-light/20 backdrop-blur-sm border border-primary/30 text-primary font-semibold rounded-full text-sm">
+                Leadership Team
+              </span>
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6">
+              <span className="block">Meet Our</span>
+              <span className="block bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+                LEADERSHIP
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Our experienced leadership team brings decades of combined expertise in transportation, logistics, and business management to ensure Fannoun continues to lead the industry.
             </p>
           </motion.div>
 
+          {/* Stats */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
           >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                className="text-center group"
-              >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-all duration-300"
-                >
-                  <stat.icon className="text-white text-2xl" />
-                </motion.div>
-                <div className="text-4xl font-bold text-white mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-white/80 text-sm">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Users className="text-white w-8 h-8" />
+              </div>
+              <div className="text-3xl font-black text-primary mb-2">5</div>
+              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+                General Managers
+              </div>
+            </div>
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary-light to-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Star className="text-white w-8 h-8" />
+              </div>
+              <div className="text-3xl font-black text-primary-light mb-2">50+</div>
+              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+                Years Combined
+              </div>
+            </div>
+            <div className="text-center group">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                <Award className="text-white w-8 h-8" />
+              </div>
+              <div className="text-3xl font-black text-primary mb-2">100%</div>
+              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+                Dedication
+              </div>
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* CTA Section */}
+        {/* Team Slider */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="text-center mt-16"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="relative max-w-7xl mx-auto"
         >
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className="inline-block bg-white rounded-2xl p-8 shadow-2xl"
-          >
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              {tHome('team.cta.title')}
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl">
-              {tHome('team.cta.description')}
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300"
-            >
-              {tHome('team.cta.button')}
-            </motion.button>
-          </motion.div>
+          <Slider {...sliderConfig} className="team-slider">
+            {teamMembers.map((member, index) => (
+              <TeamCard
+                key={member.id}
+                member={member}
+                index={index}
+              />
+            ))}
+          </Slider>
+
+          {/* Custom Slider Styles */}
+          <style jsx global>{`
+            .team-slider {
+              max-width: 100%;
+              overflow: hidden;
+            }
+            .team-slider .slick-slide {
+              padding: 0 12px;
+            }
+            .team-slider .slick-track {
+              display: flex;
+              align-items: stretch;
+            }
+            .team-slider .slick-slide > div {
+              height: 100%;
+            }
+          `}</style>
         </motion.div>
       </div>
     </section>

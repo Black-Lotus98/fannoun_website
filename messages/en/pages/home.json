@@ -137,30 +137,13 @@
     }
   },
   "team": {
-    "title": "Our Team",
-    "subtitle": "Meet the dedicated professionals who make our success possible",
-    "mohammed": {
-      "name": "Mohammed Abed aljabar",
-      "position": "Driver",
-      "description": "Experienced professional driver with years of expertise in safe and efficient transportation."
-    },
-    "maintenance": {
-      "name": "Maintenance Team",
-      "position": "Truck Maintenance Team",
-      "description": "Skilled technicians ensuring our fleet operates at peak performance with regular maintenance and repairs."
-    },
-    "alaa": {
-      "name": "Alaa Jawabreh",
-      "position": "Hankook Tires Dept",
-      "description": "Specialist in tire services and maintenance, ensuring optimal performance and safety for all vehicles."
-    },
+    "badge": "Leadership Team",
+    "title": "Meet Our",
+    "description": "Our experienced leadership team brings decades of combined expertise in transportation, logistics, and business management to ensure Fannoun continues to lead the industry.",
     "stats": {
-      "title": "Our Achievements",
-      "subtitle": "Numbers that speak to our commitment and success",
-      "experience": "Years Experience",
-      "trucks": "Trucks Fleet",
-      "reliability": "Reliability",
-      "support": "Support"
+      "managers": "General Managers",
+      "experience": "Years Combined",
+      "commitment": "Dedication"
     },
     "cta": {
       "title": "Join Our Team",
