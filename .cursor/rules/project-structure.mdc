@@ -1,0 +1,252 @@
+---
+alwaysApply: true
+description: Next.js project structure and organization guidelines
+---
+
+# Next.js Project Structure & Organization
+
+## 🏗️ **Project Architecture**
+
+This is a Next.js 15 project with TypeScript, internationalization (next-intl), and a component-based architecture that separates logic from presentation.
+
+### **Core Technologies**
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Internationalization**: next-intl with namespace-based translations
+- **Icons**: React Icons
+- **Carousel**: React Slick
+
+## 📁 **Directory Structure**
+
+```
+src/
+├── app/                          # Next.js App Router
+│   ├── [locale]/                 # Internationalized routes
+│   │   ├── layout.tsx           # Locale-specific layout
+│   │   ├── page.tsx             # Home page
+│   │   ├── about/               # About page
+│   │   │   ├── page.tsx
+│   │   │   ├── components/      # Page-specific components
+│   │   │   ├── hooks/           # Page-specific hooks
+│   │   │   ├── services/        # Page-specific services
+│   │   │   ├── types/           # Page-specific types
+│   │   │   └── utils/           # Page-specific utilities
+│   │   ├── contact/             # Contact page
+│   │   │   ├── page.tsx
+│   │   │   ├── components/
+│   │   │   ├── hooks/
+│   │   │   ├── services/
+│   │   │   ├── types/
+│   │   │   └── utils/
+│   │   └── [other-pages]/
+│   ├── layout.tsx               # Root layout
+│   └── page.tsx                 # Root redirect
+├── components/                   # Shared components
+│   ├── ui/                      # Reusable UI components
+│   ├── forms/                   # Form components
+│   ├── layout/                  # Layout components
+│   └── LanguageSwitcher.tsx     # Language switcher
+├── hooks/                       # Shared custom hooks
+├── services/                    # Shared services & APIs
+├── types/                       # Shared TypeScript types
+├── utils/                       # Shared utilities
+├── lib/                         # Shared libraries & configs
+├── i18n/                        # Internationalization config
+│   └── request.ts
+└── assets/                      # Static assets
+```
+
+## 🎯 **Page Organization Rules**
+
+### **Page-Specific Structure**
+Each page should follow this structure:
+
+```
+src/app/[locale]/[page-name]/
+├── page.tsx                     # Main page component (UI only)
+├── components/                  # Page-specific components
+│   ├── [ComponentName].tsx
+│   └── [SubComponent].tsx
+├── hooks/                       # Page-specific hooks
+│   ├── use[FeatureName].ts
+│   └── use[AnotherFeature].ts
+├── services/                    # Page-specific services
+│   ├── [serviceName].ts
+│   └── api.ts
+├── types/                       # Page-specific types
+│   ├── [featureName].types.ts
+│   └── index.ts
+└── utils/                       # Page-specific utilities
+    ├── [utilityName].ts
+    └── helpers.ts
+```
+
+### **Example: Contact Page Structure**
+```
+src/app/[locale]/contact/
+├── page.tsx                     # Main contact page
+├── components/
+│   ├── ContactForm.tsx          # Contact form component
+│   ├── ContactInfo.tsx          # Contact information
+│   └── MapComponent.tsx         # Map display
+├── hooks/
+│   ├── useContactForm.ts        # Form logic hook
+│   └── useContactValidation.ts  # Validation logic
+├── services/
+│   ├── contactApi.ts            # API calls
+│   └── emailService.ts          # Email sending
+├── types/
+│   ├── contact.types.ts         # Contact-related types
+│   └── form.types.ts            # Form types
+└── utils/
+    ├── formValidation.ts        # Validation utilities
+    └── contactHelpers.ts        # Helper functions
+```
+
+## 🔧 **Component Organization**
+
+### **Component Structure**
+```typescript
+// components/[ComponentName].tsx
+'use client'; // Only if needed
+
+import { ComponentProps } from './types';
+import { useComponentLogic } from './hooks';
+
+interface ComponentProps {
+  // Props definition
+}
+
+export default function ComponentName({ ...props }: ComponentProps) {
+  // UI logic only
+  return (
+    <div>
+      {/* JSX */}
+    </div>
+  );
+}
+```
+
+### **Hook Structure**
+```typescript
+// hooks/use[FeatureName].ts
+import { useState, useEffect } from 'react';
+import { FeatureType } from '../types';
+
+export function useFeatureName() {
+  // Hook logic
+  return {
+    // Return values
+  };
+}
+```
+
+### **Service Structure**
+```typescript
+// services/[serviceName].ts
+import { ServiceType } from '../types';
+
+export class ServiceName {
+  static async methodName(): Promise<ServiceType> {
+    // Service logic
+  }
+}
+```
+
+## 📝 **File Naming Conventions**
+
+- **Components**: PascalCase (e.g., `ContactForm.tsx`)
+- **Hooks**: camelCase starting with 'use' (e.g., `useContactForm.ts`)
+- **Services**: camelCase (e.g., `contactApi.ts`)
+- **Types**: camelCase with '.types.ts' suffix (e.g., `contact.types.ts`)
+- **Utils**: camelCase (e.g., `formValidation.ts`)
+- **Pages**: `page.tsx` (Next.js convention)
+
+## 🎨 **Code Organization Principles**
+
+### **1. Separation of Concerns**
+- **UI Components**: Only JSX and basic styling
+- **Hooks**: Business logic and state management
+- **Services**: API calls and external integrations
+- **Types**: TypeScript definitions
+- **Utils**: Pure functions and helpers
+
+### **2. Import/Export Patterns**
+```typescript
+// Page component - minimal imports
+import { ContactForm } from './components/ContactForm';
+import { useContactForm } from './hooks/useContactForm';
+
+// Component - focused imports
+import { useComponentLogic } from './hooks';
+import { ComponentProps } from './types';
+
+// Hook - business logic
+import { useState, useEffect } from 'react';
+import { ContactService } from '../services';
+import { ContactType } from '../types';
+```
+
+### **3. TypeScript Usage**
+- Always define interfaces for props
+- Use strict typing for API responses
+- Create type files for each feature
+- Export types from index files
+
+## 🌐 **Internationalization Structure**
+
+### **Translation Files**
+```
+messages/
+├── en/
+│   ├── common.json              # Shared translations
+│   ├── pages/
+│   │   ├── home.json
+│   │   ├── about.json
+│   │   └── contact.json
+│   └── components/
+│       └── header.json
+└── ar/
+    ├── common.json
+    ├── pages/
+    │   ├── home.json
+    │   ├── about.json
+    │   └── contact.json
+    └── components/
+        └── header.json
+```
+
+### **Translation Usage**
+```typescript
+// In components
+const tCommon = useTranslations('common');
+const tPage = useTranslations('contact');
+const tComponent = useTranslations('header');
+```
+
+## 🚀 **Best Practices**
+
+1. **Keep page.tsx minimal** - only UI structure
+2. **Extract logic to hooks** - reusable and testable
+3. **Use services for API calls** - centralized and maintainable
+4. **Define types for everything** - better development experience
+5. **Group related functionality** - easier to maintain
+6. **Use barrel exports** - cleaner imports
+7. **Follow naming conventions** - consistent codebase
+8. **Separate shared vs page-specific** - clear boundaries
+
+## 📋 **File Creation Checklist**
+
+When creating a new page:
+- [ ] Create page directory under `[locale]/`
+- [ ] Add `page.tsx` with minimal UI
+- [ ] Create `components/` directory
+- [ ] Create `hooks/` directory
+- [ ] Create `services/` directory
+- [ ] Create `types/` directory
+- [ ] Create `utils/` directory (if needed)
+- [ ] Add translation files for the page
+- [ ] Update i18n config if needed
+
+This structure ensures maintainable, scalable, and well-organized code that separates concerns while keeping related functionality together.

@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome to Fannoun Website",
+  "hello": "Hello",
+  "goodbye": "Goodbye",
+  "test": "This is a test translation",
+  "currentLocale": "Current locale: {locale}",
+  "packages": {
+    "reactIcons": "React Icons",
+    "reactSlick": "React Slick", 
+    "nextIntl": "Next-intl"
+  }
+}

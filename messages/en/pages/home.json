@@ -1,0 +1,171 @@
+{
+  "title": "Fannoun Transportation",
+  "subtitle": "Leading Transportation & Logistics in Jordan",
+  "description": "Your trusted partner for reliable transportation services across Jordan and the region.",
+  "cta": "Get Started",
+  "features": {
+    "title": "Our Features",
+    "feature1": "Fast Performance",
+    "feature2": "Secure & Reliable",
+    "feature3": "Easy to Use"
+  },
+  "test": "This is a test translation",
+  "hero": {
+    "badge": "Since 1967",
+    "title": "Transporting Liquid & Dry Goods",
+    "subtitle": "As one of Jordan's leading Fuel Transporting companies",
+    "description": "We aimed to be the most efficient, trustworthy and reliable. We know that value and trust are the key ingredients of a quality relationship— and that they are earned over more than a single move.",
+    "cta": {
+      "primary": "Our Services",
+      "secondary": "Learn More"
+    },
+    "stats": {
+      "years": "Years Experience",
+      "trucks": "Trucks Fleet",
+      "reliability": "Reliability"
+    }
+  },
+  "companies": {
+    "title": "Our Companies",
+    "subtitle": "Three specialized divisions serving different transportation needs",
+    "ramz": {
+      "subtitle": "Transporting Liquid Goods",
+      "description": "As one of Jordan's leading Fuel Transporting companies, we aimed to be the most efficient, trustworthy and reliable.",
+      "features": {
+        "1": "Crude oil and derivatives transport",
+        "2": "Advanced safety protocols",
+        "3": "24/7 monitoring systems"
+      }
+    },
+    "fannoun": {
+      "subtitle": "Transporting Dry Goods",
+      "description": "Our Dry Goods Transporting division allows us to work throughout Jordan and other surrounding countries without restrictions.",
+      "features": {
+        "1": "Ready Loaded Containers",
+        "2": "Bulk Good Transporting",
+        "3": "Cross-border movements"
+      }
+    },
+    "tires": {
+      "subtitle": "Hankook & Jinyu Tires sole agent",
+      "description": "Hankook Tire, Established in 1941, is embracing the global stage. JINYU Tire, identified as 'SHANDONG FAMOUS BRAND'.",
+      "features": {
+        "1": "Hankook Tires authorized dealer",
+        "2": "Jinyu Tires exclusive agent",
+        "3": "Professional tire services"
+      }
+    },
+    "cta": "Learn More",
+    "promise": {
+      "title": "The company promise",
+      "description": "We started our business to cover a need in the market for an honest, innovative and dependable service provider, we have been fulfilling those needs ever since.",
+      "cta": "Our Commitment"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive transportation and logistics solutions tailored to your needs",
+    "liquid": {
+      "title": "Liquid Goods Transport",
+      "description": "Specialized transportation of crude oil, fuel, and other liquid commodities with advanced safety protocols.",
+      "features": {
+        "1": "Crude oil and derivatives transport",
+        "2": "Advanced safety protocols",
+        "3": "24/7 monitoring systems"
+      }
+    },
+    "dry": {
+      "title": "Dry Goods Transport",
+      "description": "Efficient transportation of dry goods and bulk materials across Jordan and neighboring countries.",
+      "features": {
+        "1": "Ready Loaded Containers",
+        "2": "Bulk Good Transporting",
+        "3": "Cross-border movements"
+      }
+    },
+    "container": {
+      "title": "Container Services",
+      "description": "Professional container handling and transportation services for international trade.",
+      "features": {
+        "1": "Container loading/unloading",
+        "2": "International shipping",
+        "3": "Customs clearance support"
+      }
+    },
+    "tires": {
+      "title": "Tire Services",
+      "description": "Authorized dealer for Hankook and Jinyu tires with professional installation and maintenance.",
+      "features": {
+        "1": "Hankook Tires authorized dealer",
+        "2": "Jinyu Tires exclusive agent",
+        "3": "Professional tire services"
+      }
+    },
+    "crossBorder": {
+      "title": "Cross-Border Transport",
+      "description": "Seamless transportation services across Jordan and neighboring countries.",
+      "features": {
+        "1": "International documentation",
+        "2": "Border crossing assistance",
+        "3": "Multi-country logistics"
+      }
+    },
+    "logistics": {
+      "title": "Logistics Solutions",
+      "description": "Complete supply chain management and logistics coordination services.",
+      "features": {
+        "1": "Supply chain management",
+        "2": "Route optimization",
+        "3": "Real-time tracking"
+      }
+    }
+  },
+  "values": {
+    "title": "Our Core Values",
+    "subtitle": "The principles that guide everything we do",
+    "safety": {
+      "title": "Safety First",
+      "description": "We prioritize the safety of our drivers, cargo, and the communities we serve through rigorous safety protocols and continuous training."
+    },
+    "reliability": {
+      "title": "Reliability",
+      "description": "Our commitment to on-time delivery and consistent service quality has made us a trusted partner for over 50 years."
+    },
+    "quality": {
+      "title": "Quality Service",
+      "description": "We maintain the highest standards in all our operations, from vehicle maintenance to customer service excellence."
+    }
+  },
+  "team": {
+    "title": "Our Team",
+    "subtitle": "Meet the dedicated professionals who make our success possible",
+    "mohammed": {
+      "name": "Mohammed Abed aljabar",
+      "position": "Driver",
+      "description": "Experienced professional driver with years of expertise in safe and efficient transportation."
+    },
+    "maintenance": {
+      "name": "Maintenance Team",
+      "position": "Truck Maintenance Team",
+      "description": "Skilled technicians ensuring our fleet operates at peak performance with regular maintenance and repairs."
+    },
+    "alaa": {
+      "name": "Alaa Jawabreh",
+      "position": "Hankook Tires Dept",
+      "description": "Specialist in tire services and maintenance, ensuring optimal performance and safety for all vehicles."
+    },
+    "stats": {
+      "title": "Our Achievements",
+      "subtitle": "Numbers that speak to our commitment and success",
+      "experience": "Years Experience",
+      "trucks": "Trucks Fleet",
+      "reliability": "Reliability",
+      "support": "Support"
+    },
+    "cta": {
+      "title": "Join Our Team",
+      "description": "We are hiring drivers and have 2 opened positions. See what we offer and what we need and apply today!",
+      "button": "Apply Now"
+    }
+  }
+}

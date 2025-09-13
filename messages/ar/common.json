@@ -1,0 +1,26 @@
+{
+  "welcome": "مرحباً بكم في موقع فانون",
+  "hello": "مرحباً",
+  "goodbye": "وداعاً",
+  "currentLocale": "اللغة الحالية: {locale}",
+  "loading": "جاري التحميل...",
+  "error": "حدث خطأ",
+  "success": "نجح!",
+  "cancel": "إلغاء",
+  "save": "حفظ",
+  "edit": "تعديل",
+  "delete": "حذف",
+  "switchLanguage": "تغيير اللغة",
+  "languages": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "footer": {
+    "description": "شريكك الموثوق لخدمات النقل الموثوقة عبر الأردن والمنطقة منذ 1967.",
+    "quickLinks": "روابط سريعة",
+    "services": "خدماتنا",
+    "contact": "اتصل بنا",
+    "rights": "جميع الحقوق محفوظة.",
+    "developedBy": "تم التطوير بواسطة"
+  }
+}

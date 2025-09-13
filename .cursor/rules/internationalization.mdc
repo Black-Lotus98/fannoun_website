@@ -1,0 +1,359 @@
+---
+
+globs: *.ts,*.tsx,*.json
+description: Internationalization patterns and translation management
+---
+
+# Internationalization (i18n) Patterns
+
+## 🌐 **Translation File Structure**
+
+### **Namespace Organization**
+```
+messages/
+├── en/
+│   ├── common.json              # Shared translations
+│   ├── pages/
+│   │   ├── home.json           # Home page translations
+│   │   ├── about.json          # About page translations
+│   │   ├── contact.json        # Contact page translations
+│   │   └── [page-name].json    # Other pages
+│   └── components/
+│       ├── header.json         # Header component
+│       ├── footer.json         # Footer component
+│       ├── forms.json          # Form components
+│       └── [component].json    # Other components
+└── ar/
+    ├── common.json
+    ├── pages/
+    │   ├── home.json
+    │   ├── about.json
+    │   ├── contact.json
+    │   └── [page-name].json
+    └── components/
+        ├── header.json
+        ├── footer.json
+        ├── forms.json
+        └── [component].json
+```
+
+## 📝 **Translation File Patterns**
+
+### **Common Translations**
+```json
+// messages/en/common.json
+{
+  "welcome": "Welcome to Fannoun Website",
+  "hello": "Hello",
+  "goodbye": "Goodbye",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Success!",
+  "cancel": "Cancel",
+  "save": "Save",
+  "edit": "Edit",
+  "delete": "Delete",
+  "submit": "Submit",
+  "back": "Back",
+  "next": "Next",
+  "previous": "Previous",
+  "close": "Close",
+  "open": "Open",
+  "search": "Search",
+  "filter": "Filter",
+  "sort": "Sort",
+  "currentLocale": "Current locale: {locale}",
+  "switchLanguage": "Switch Language",
+  "languages": {
+    "en": "English",
+    "ar": "العربية"
+  }
+}
+```
+
+### **Page-Specific Translations**
+```json
+// messages/en/pages/contact.json
+{
+  "title": "Contact Us",
+  "subtitle": "Get in touch with our team",
+  "description": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "form": {
+    "title": "Send us a message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "submit": "Send Message",
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address"
+  },
+  "info": {
+    "title": "Contact Information",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Business Hours"
+  },
+  "success": {
+    "title": "Message Sent!",
+    "message": "Thank you for your message. We'll get back to you soon."
+  }
+}
+```
+
+### **Component-Specific Translations**
+```json
+// messages/en/components/header.json
+{
+  "logo": "Fannoun",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "blog": "Blog"
+  },
+  "language": "Language",
+  "menu": "Menu",
+  "close": "Close"
+}
+```
+
+## 🔧 **Component Usage Patterns**
+
+### **Multiple Namespace Usage**
+```typescript
+// In page components
+import { useTranslations } from 'next-intl';
+
+export default function ContactPage() {
+  const tCommon = useTranslations('common');
+  const tContact = useTranslations('contact');
+  const tHeader = useTranslations('header');
+  
+  return (
+    <div>
+      <header>
+        <h1>{tHeader('logo')}</h1>
+        <nav>
+          <a href="/en">{tHeader('nav.home')}</a>
+          <a href="/en/about">{tHeader('nav.about')}</a>
+          <a href="/en/contact">{tHeader('nav.contact')}</a>
+        </nav>
+      </header>
+      
+      <main>
+        <h2>{tContact('title')}</h2>
+        <p>{tContact('description')}</p>
+        
+        <form>
+          <label>{tContact('form.name')}</label>
+          <input type="text" placeholder={tContact('form.name')} />
+          
+          <button type="submit">
+            {tContact('form.submit')}
+          </button>
+        </form>
+      </main>
+    </div>
+  );
+}
+```
+
+### **Form Component with Translations**
+```typescript
+// components/ContactForm.tsx
+'use client';
+
+import { useTranslations } from 'next-intl';
+import { FormData } from '../types';
+
+interface ContactFormProps {
+  onSubmit: (data: FormData) => void;
+}
+
+export default function ContactForm({ onSubmit }: ContactFormProps) {
+  const tForm = useTranslations('contact.form');
+  const tCommon = useTranslations('common');
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="name">{tForm('name')}</label>
+        <input
+          id="name"
+          type="text"
+          placeholder={tForm('name')}
+          required
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="email">{tForm('email')}</label>
+        <input
+          id="email"
+          type="email"
+          placeholder={tForm('email')}
+          required
+        />
+      </div>
+      
+      <div>
+        <label htmlFor="message">{tForm('message')}</label>
+        <textarea
+          id="message"
+          placeholder={tForm('message')}
+          required
+        />
+      </div>
+      
+      <button type="submit">
+        {tForm('submit')}
+      </button>
+      
+      <button type="button">
+        {tCommon('cancel')}
+      </button>
+    </form>
+  );
+}
+```
+
+## 🎯 **Translation Key Patterns**
+
+### **Nested Object Structure**
+```json
+{
+  "page": {
+    "title": "Page Title",
+    "subtitle": "Page Subtitle",
+    "sections": {
+      "hero": {
+        "title": "Hero Title",
+        "description": "Hero Description"
+      },
+      "features": {
+        "title": "Features Title",
+        "items": {
+          "feature1": "Feature 1",
+          "feature2": "Feature 2"
+        }
+      }
+    }
+  }
+}
+```
+
+### **Usage with Nested Keys**
+```typescript
+const tPage = useTranslations('page');
+
+return (
+  <div>
+    <h1>{tPage('title')}</h1>
+    <h2>{tPage('subtitle')}</h2>
+    
+    <section>
+      <h3>{tPage('sections.hero.title')}</h3>
+      <p>{tPage('sections.hero.description')}</p>
+    </section>
+    
+    <section>
+      <h3>{tPage('sections.features.title')}</h3>
+      <ul>
+        <li>{tPage('sections.features.items.feature1')}</li>
+        <li>{tPage('sections.features.items.feature2')}</li>
+      </ul>
+    </section>
+  </div>
+);
+```
+
+## 🔄 **Dynamic Translation Patterns**
+
+### **Parameter Interpolation**
+```json
+{
+  "welcome": "Welcome, {name}!",
+  "itemCount": "You have {count} items",
+  "currentLocale": "Current locale: {locale}",
+  "lastUpdated": "Last updated: {date}"
+}
+```
+
+### **Usage with Parameters**
+```typescript
+const tCommon = useTranslations('common');
+
+return (
+  <div>
+    <h1>{tCommon('welcome', { name: 'John' })}</h1>
+    <p>{tCommon('itemCount', { count: 5 })}</p>
+    <p>{tCommon('currentLocale', { locale: 'en' })}</p>
+    <p>{tCommon('lastUpdated', { date: new Date().toLocaleDateString() })}</p>
+  </div>
+);
+```
+
+## 🏗️ **i18n Configuration**
+
+### **Request Configuration**
+```typescript
+// src/i18n/request.ts
+import { notFound } from "next/navigation";
+import { getRequestConfig } from "next-intl/server";
+
+const locales = ["en", "ar"] as const;
+type Locale = (typeof locales)[number];
+
+export default getRequestConfig(async ({ locale }) => {
+  if (!locale || !locales.includes(locale as Locale)) {
+    locale = "en";
+  }
+
+  // Load all translation namespaces
+  const [common, home, about, contact, header] = await Promise.all([
+    import(`../../messages/${locale}/common.json`),
+    import(`../../messages/${locale}/pages/home.json`),
+    import(`../../messages/${locale}/pages/about.json`),
+    import(`../../messages/${locale}/pages/contact.json`),
+    import(`../../messages/${locale}/components/header.json`),
+  ]);
+
+  return {
+    locale: locale as Locale,
+    messages: {
+      common: common.default,
+      home: home.default,
+      about: about.default,
+      contact: contact.default,
+      header: header.default,
+    },
+  };
+});
+```
+
+## 📋 **Translation Management Checklist**
+
+When adding new translations:
+- [ ] Add keys to both `en` and `ar` files
+- [ ] Use consistent naming conventions
+- [ ] Group related keys logically
+- [ ] Use nested objects for complex structures
+- [ ] Add parameter placeholders for dynamic content
+- [ ] Update i18n config if adding new namespaces
+- [ ] Test translations in both languages
+- [ ] Verify RTL support for Arabic
+
+## 🎯 **Best Practices**
+
+1. **Use descriptive key names** that indicate purpose
+2. **Group related translations** in nested objects
+3. **Keep translations consistent** across languages
+4. **Use parameters** for dynamic content
+5. **Test both languages** thoroughly
+6. **Consider RTL layout** for Arabic
+7. **Use proper HTML attributes** for accessibility
+8. **Keep translation files organized** by feature/page

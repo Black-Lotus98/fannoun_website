@@ -1,0 +1,348 @@
+---
+globs: *.ts,*.tsx
+description: TypeScript patterns and component organization guidelines
+---
+
+# TypeScript & Component Patterns
+
+## 🎯 **Component Organization**
+
+### **Page Component Structure**
+```typescript
+// src/app/[locale]/[page]/page.tsx
+'use client';
+
+import { PageComponents } from './components';
+import { usePageLogic } from './hooks';
+import { PageProps } from './types';
+
+export default function PageName() {
+  const { data, handlers } = usePageLogic();
+  
+  return (
+    <div>
+      <PageComponents.Header />
+      <PageComponents.MainContent data={data} />
+      <PageComponents.Footer />
+    </div>
+  );
+}
+```
+
+### **Component Structure**
+```typescript
+// src/app/[locale]/[page]/components/[ComponentName].tsx
+'use client';
+
+import { ComponentProps, ComponentState } from '../types';
+import { useComponentLogic } from '../hooks';
+
+interface ComponentProps {
+  data: DataType;
+  onAction: (value: string) => void;
+  className?: string;
+}
+
+export default function ComponentName({ 
+  data, 
+  onAction, 
+  className = '' 
+}: ComponentProps) {
+  const { state, handlers } = useComponentLogic(data);
+  
+  return (
+    <div className={`component-base ${className}`}>
+      {/* Component JSX */}
+    </div>
+  );
+}
+```
+
+## 🔧 **Hook Patterns**
+
+### **Custom Hook Structure**
+```typescript
+// src/app/[locale]/[page]/hooks/use[FeatureName].ts
+import { useState, useEffect, useCallback } from 'react';
+import { FeatureType, FeatureState } from '../types';
+import { FeatureService } from '../services';
+
+export function useFeatureName(initialData?: FeatureType) {
+  const [state, setState] = useState<FeatureState>({
+    data: initialData,
+    loading: false,
+    error: null
+  });
+
+  const handlers = {
+    fetchData: useCallback(async () => {
+      setState(prev => ({ ...prev, loading: true }));
+      try {
+        const data = await FeatureService.getData();
+        setState(prev => ({ ...prev, data, loading: false }));
+      } catch (error) {
+        setState(prev => ({ ...prev, error, loading: false }));
+      }
+    }, []),
+    
+    updateData: useCallback((newData: Partial<FeatureType>) => {
+      setState(prev => ({
+        ...prev,
+        data: { ...prev.data, ...newData }
+      }));
+    }, [])
+  };
+
+  return { state, handlers };
+}
+```
+
+## 🏗️ **Service Patterns**
+
+### **Service Class Structure**
+```typescript
+// src/app/[locale]/[page]/services/[ServiceName].ts
+import { ApiResponse, ServiceConfig } from '../types';
+
+export class ServiceName {
+  private static baseUrl = process.env.NEXT_PUBLIC_API_URL;
+  
+  static async getData(id: string): Promise<ApiResponse<DataType>> {
+    const response = await fetch(`${this.baseUrl}/data/${id}`);
+    return response.json();
+  }
+  
+  static async createData(data: CreateDataType): Promise<ApiResponse<DataType>> {
+    const response = await fetch(`${this.baseUrl}/data`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return response.json();
+  }
+}
+```
+
+## 📝 **Type Definitions**
+
+### **Type File Structure**
+```typescript
+// src/app/[locale]/[page]/types/[featureName].types.ts
+export interface BaseType {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface DataType extends BaseType {
+  name: string;
+  description: string;
+  status: 'active' | 'inactive';
+}
+
+export interface CreateDataType {
+  name: string;
+  description: string;
+}
+
+export interface UpdateDataType extends Partial<CreateDataType> {
+  id: string;
+}
+
+export interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+  message?: string;
+}
+
+export interface ComponentState<T = any> {
+  data: T | null;
+  loading: boolean;
+  error: string | null;
+}
+```
+
+### **Index Type Exports**
+```typescript
+// src/app/[locale]/[page]/types/index.ts
+export * from './featureName.types';
+export * from './api.types';
+export * from './form.types';
+
+// Re-export commonly used types
+export type { DataType, CreateDataType, UpdateDataType } from './featureName.types';
+```
+
+## 🎨 **Component Patterns**
+
+### **Form Component Pattern**
+```typescript
+// src/app/[locale]/[page]/components/FormComponent.tsx
+'use client';
+
+import { useState } from 'react';
+import { FormData, FormErrors } from '../types';
+import { useFormValidation } from '../hooks';
+
+interface FormComponentProps {
+  onSubmit: (data: FormData) => void;
+  initialData?: Partial<FormData>;
+}
+
+export default function FormComponent({ 
+  onSubmit, 
+  initialData = {} 
+}: FormComponentProps) {
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: '',
+    ...initialData
+  });
+  
+  const { errors, validate, isValid } = useFormValidation();
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isValid(formData)) {
+      onSubmit(formData);
+    }
+  };
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      {/* Form fields */}
+    </form>
+  );
+}
+```
+
+### **List Component Pattern**
+```typescript
+// src/app/[locale]/[page]/components/ListComponent.tsx
+'use client';
+
+import { DataType } from '../types';
+
+interface ListComponentProps {
+  items: DataType[];
+  onItemClick: (item: DataType) => void;
+  onItemEdit: (item: DataType) => void;
+  onItemDelete: (id: string) => void;
+}
+
+export default function ListComponent({ 
+  items, 
+  onItemClick, 
+  onItemEdit, 
+  onItemDelete 
+}: ListComponentProps) {
+  return (
+    <div className="list-container">
+      {items.map(item => (
+        <div key={item.id} className="list-item">
+          {/* Item content */}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+## 🔄 **State Management Patterns**
+
+### **Local State Pattern**
+```typescript
+// For component-specific state
+const [localState, setLocalState] = useState<LocalStateType>({
+  isOpen: false,
+  selectedItem: null
+});
+```
+
+### **Shared State Pattern**
+```typescript
+// For page-level state shared across components
+const { state, handlers } = usePageState();
+
+// In usePageState hook
+export function usePageState() {
+  const [state, setState] = useState<PageState>({
+    data: [],
+    loading: false,
+    error: null
+  });
+  
+  const handlers = {
+    setData: (data: DataType[]) => setState(prev => ({ ...prev, data })),
+    setLoading: (loading: boolean) => setState(prev => ({ ...prev, loading })),
+    setError: (error: string | null) => setState(prev => ({ ...prev, error }))
+  };
+  
+  return { state, handlers };
+}
+```
+
+## 🌐 **Internationalization Patterns**
+
+### **Translation Usage**
+```typescript
+// In components
+import { useTranslations } from 'next-intl';
+
+export default function Component() {
+  const tCommon = useTranslations('common');
+  const tPage = useTranslations('contact');
+  const tComponent = useTranslations('header');
+  
+  return (
+    <div>
+      <h1>{tPage('title')}</h1>
+      <p>{tCommon('description')}</p>
+    </div>
+  );
+}
+```
+
+### **Type-Safe Translations**
+```typescript
+// types/translations.types.ts
+export interface TranslationKeys {
+  common: {
+    welcome: string;
+    hello: string;
+    goodbye: string;
+  };
+  contact: {
+    title: string;
+    form: {
+      name: string;
+      email: string;
+      message: string;
+    };
+  };
+}
+```
+
+## 📋 **File Organization Checklist**
+
+When creating a new component:
+- [ ] Define TypeScript interfaces
+- [ ] Extract logic to custom hooks
+- [ ] Use proper prop types
+- [ ] Add error boundaries if needed
+- [ ] Include accessibility attributes
+- [ ] Add proper className handling
+- [ ] Use semantic HTML elements
+- [ ] Include proper event handlers
+
+## 🎯 **Best Practices**
+
+1. **Always use TypeScript interfaces** for props and state
+2. **Extract business logic** to custom hooks
+3. **Use proper naming conventions** for files and functions
+4. **Keep components focused** on single responsibility
+5. **Use proper error handling** in async operations
+6. **Include proper loading states** for better UX
+7. **Use semantic HTML** for accessibility
+8. **Follow React best practices** for performance

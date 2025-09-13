@@ -1,0 +1,51 @@
+{
+  "title": "Contact Us",
+  "subtitle": "Get in touch with us for all your transportation needs",
+  "description": "We would love to hear from you. Send us a message and we will respond as soon as possible.",
+  "form": {
+    "title": "Send us a Message",
+    "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
+    "phone": "Phone Number",
+    "phonePlaceholder": "Enter your phone number",
+    "service": "Service Needed",
+    "servicePlaceholder": "Select a service",
+    "message": "Message",
+    "messagePlaceholder": "Tell us about your transportation needs...",
+    "submit": "Send Message",
+    "submitting": "Sending...",
+    "success": {
+      "title": "Message Sent Successfully!",
+      "message": "Thank you for contacting us. We'll get back to you within 24 hours."
+    }
+  },
+  "services": {
+    "liquid": "Liquid Goods Transport",
+    "dry": "Dry Goods Transport",
+    "tires": "Tire Services",
+    "other": "Other Services"
+  },
+  "info": {
+    "title": "Get in Touch",
+    "description": "Ready to work with us? Contact us today to discuss your transportation needs.",
+    "phone": {
+      "title": "Phone Numbers"
+    },
+    "email": {
+      "title": "Email Address"
+    },
+    "address": {
+      "title": "Office Address",
+      "detail": "Amman, Jordan"
+    },
+    "hours": {
+      "title": "Business Hours",
+      "detail": "Sunday - Thursday: 8:00 AM - 6:00 PM"
+    }
+  },
+  "map": {
+    "placeholder": "Interactive Map Coming Soon"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "welcome": "Welcome to Fannoun Website",
+  "hello": "Hello",
+  "goodbye": "Goodbye",
+  "currentLocale": "Current locale: {locale}",
+  "loading": "Loading...",
+  "error": "An error occurred",
+  "success": "Success!",
+  "cancel": "Cancel",
+  "save": "Save",
+  "edit": "Edit",
+  "delete": "Delete",
+  "switchLanguage": "Switch Language",
+  "languages": {
+    "en": "English",
+    "ar": "العربية"
+  },
+  "footer": {
+    "description": "Your trusted partner for reliable transportation services across Jordan and the region since 1967.",
+    "quickLinks": "Quick Links",
+    "services": "Our Services",
+    "contact": "Contact Us",
+    "rights": "All Rights Reserved.",
+    "developedBy": "Developed by"
+  }
+}

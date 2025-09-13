@@ -1,0 +1,12 @@
+{
+  "welcome": "مرحباً بكم في موقع فانون",
+  "hello": "مرحباً",
+  "goodbye": "وداعاً",
+  "test": "هذه ترجمة تجريبية",
+  "currentLocale": "اللغة الحالية: {locale}",
+  "packages": {
+    "reactIcons": "أيقونات رياكت",
+    "reactSlick": "رياكت سليك", 
+    "nextIntl": "نكست-آي-18-إن"
+  }
+}
