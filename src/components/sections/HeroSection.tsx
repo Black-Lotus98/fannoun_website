@@ -49,21 +49,25 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#F07B09] via-[#f6a201] to-[#F07B09]">
-      {/* Background Image */}
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-24">
+      {/* Sophisticated Background with Multiple Layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
+      
+      {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop&auto=format"
           alt="Transportation trucks on highway"
           fill
-          className="object-cover opacity-20"
+          className="object-cover"
           priority
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/80"></div>
       </div>
       
-      {/* Background Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      {/* Transportation-themed Pattern Overlay */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20viewBox%3D%220%200%20100%20100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23F07B09%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M20%2020h60v60H20z%22/%3E%3Cpath%20d%3D%22M30%2030h40v40H30z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
 
       {/* Animated Background Elements */}
@@ -90,150 +94,181 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid lg:grid-cols-2 gap-12 items-center"
+          className="grid lg:grid-cols-2 gap-16 items-center"
         >
           {/* Content */}
-          <div className="text-white">
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 bg-white text-[#F07B09] font-semibold rounded-full text-sm">
+          <div className="text-white space-y-8">
+            {/* Company Badge */}
+            <motion.div variants={itemVariants} className="inline-flex items-center space-x-3">
+              <div className="w-2 h-2 bg-[#F07B09] rounded-full animate-pulse"></div>
+              <span className="px-6 py-3 bg-gradient-to-r from-[#F07B09]/20 to-[#f6a201]/20 backdrop-blur-sm border border-[#F07B09]/30 text-[#f6a201] font-semibold rounded-full text-sm">
                 {tHome('hero.badge')}
               </span>
             </motion.div>
 
-            <motion.h1 
-              variants={itemVariants}
-              className="text-5xl lg:text-7xl font-bold mb-6 leading-tight"
-            >
-              {tHome('hero.title')}
-            </motion.h1>
+            {/* Main Headline */}
+            <motion.div variants={itemVariants} className="space-y-4">
+              <h1 className="text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
+                <span className="block text-white">{tHome('hero.title')}</span>
+                <span className="block bg-gradient-to-r from-[#F07B09] to-[#f6a201] bg-clip-text text-transparent">
+                  TRANSPORT
+                </span>
+              </h1>
+            </motion.div>
 
+            {/* Subtitle */}
             <motion.p 
               variants={itemVariants}
-              className="text-xl lg:text-2xl mb-8 text-white leading-relaxed"
+              className="text-2xl lg:text-3xl font-light text-white/90 leading-relaxed max-w-2xl"
             >
               {tHome('hero.subtitle')}
             </motion.p>
 
+            {/* Description */}
             <motion.p 
               variants={itemVariants}
-              className="text-lg mb-10 text-white/90 max-w-2xl"
+              className="text-lg text-white/80 max-w-2xl leading-relaxed"
             >
               {tHome('hero.description')}
             </motion.p>
 
+            {/* CTA Buttons */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-6 pt-4"
             >
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-white text-[#F07B09] font-bold rounded-lg text-lg hover:bg-gray-100 transition-colors duration-200"
+                className="group relative px-10 py-5 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-2xl text-lg shadow-2xl hover:shadow-[#F07B09]/25 transition-all duration-300 overflow-hidden"
               >
-                {tHome('hero.cta.primary')}
+                <span className="relative z-10">{tHome('hero.cta.primary')}</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#f6a201] to-[#F07B09] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.button>
+              
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg text-lg hover:bg-white hover:text-[#F07B09] transition-colors duration-200"
+                className="px-10 py-5 border-2 border-white/30 text-white font-semibold rounded-2xl text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
               >
                 {tHome('hero.cta.secondary')}
               </motion.button>
             </motion.div>
 
-            {/* Stats */}
+            {/* Stats Grid */}
             <motion.div 
               variants={itemVariants}
-              className="mt-16 grid grid-cols-3 gap-8"
+              className="grid grid-cols-3 gap-8 pt-12"
             >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">50+</div>
-                <div className="text-sm text-white/80">{tHome('hero.stats.years')}</div>
+              <div className="text-center group">
+                <div className="text-4xl font-black text-[#F07B09] mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>
+                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.years')}</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">200+</div>
-                <div className="text-sm text-white/80">{tHome('hero.stats.trucks')}</div>
+              <div className="text-center group">
+                <div className="text-4xl font-black text-[#f6a201] mb-2 group-hover:scale-110 transition-transform duration-300">200+</div>
+                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.trucks')}</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white">100%</div>
-                <div className="text-sm text-white/80">{tHome('hero.stats.reliability')}</div>
+              <div className="text-center group">
+                <div className="text-4xl font-black text-[#F07B09] mb-2 group-hover:scale-110 transition-transform duration-300">100%</div>
+                <div className="text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.reliability')}</div>
               </div>
             </motion.div>
           </div>
 
-          {/* Animated Truck Graphic */}
+          {/* Sophisticated Transportation Visual */}
           <motion.div 
             variants={truckVariants}
             className="relative"
           >
-            <div className="relative w-full h-96 lg:h-[500px]">
-              {/* Main Truck */}
+            <div className="relative w-full h-96 lg:h-[600px]">
+              {/* Main Transportation Scene */}
               <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ y: [-15, 15, -15] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute inset-0 flex items-center justify-center"
               >
                 <div className="relative">
-                  {/* Truck Body */}
-                  <div className="w-80 h-40 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg shadow-2xl relative">
-                    {/* Truck Cab */}
-                    <div className="absolute left-4 top-2 w-24 h-32 bg-gradient-to-r from-[#F07B09] to-[#f6a201] rounded-lg">
-                      <div className="absolute top-2 left-2 w-20 h-6 bg-white/30 rounded"></div>
-                      <div className="absolute bottom-2 left-2 w-20 h-4 bg-white/20 rounded"></div>
+                  {/* Sophisticated Truck Design */}
+                  <div className="relative w-96 h-48">
+                    {/* Truck Cab - More Realistic */}
+                    <div className="absolute left-0 top-4 w-32 h-36 bg-gradient-to-br from-[#F07B09] to-[#f6a201] rounded-2xl shadow-2xl">
+                      <div className="absolute top-3 left-3 w-26 h-8 bg-white/20 rounded-lg"></div>
+                      <div className="absolute top-12 left-3 w-26 h-6 bg-white/10 rounded"></div>
+                      <div className="absolute bottom-3 left-3 w-26 h-4 bg-white/15 rounded"></div>
                     </div>
                     
-                    {/* Container */}
-                    <div className="absolute right-4 top-2 w-48 h-32 bg-gradient-to-r from-white to-gray-100 rounded-lg">
-                      <div className="absolute top-2 left-2 w-44 h-6 bg-white/30 rounded"></div>
-                      <div className="absolute bottom-2 left-2 w-44 h-4 bg-white/20 rounded"></div>
+                    {/* Container - More Detailed */}
+                    <div className="absolute right-0 top-4 w-56 h-36 bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl shadow-2xl border-2 border-white/20">
+                      <div className="absolute top-3 left-3 w-50 h-8 bg-white/30 rounded-lg"></div>
+                      <div className="absolute top-12 left-3 w-50 h-6 bg-white/20 rounded"></div>
+                      <div className="absolute bottom-3 left-3 w-50 h-4 bg-white/25 rounded"></div>
+                      {/* Fannoun Logo Placeholder */}
+                      <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-20 h-6 bg-gradient-to-r from-[#F07B09] to-[#f6a201] rounded text-white text-xs font-bold flex items-center justify-center">
+                        FANNOUN
+                      </div>
                     </div>
 
-                    {/* Wheels */}
-                    <div className="absolute -bottom-4 left-8 w-8 h-8 bg-gray-800 rounded-full"></div>
-                    <div className="absolute -bottom-4 left-20 w-8 h-8 bg-gray-800 rounded-full"></div>
-                    <div className="absolute -bottom-4 right-8 w-8 h-8 bg-gray-800 rounded-full"></div>
-                    <div className="absolute -bottom-4 right-20 w-8 h-8 bg-gray-800 rounded-full"></div>
+                    {/* Wheels - More Realistic */}
+                    <div className="absolute -bottom-6 left-12 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full shadow-lg"></div>
+                    <div className="absolute -bottom-6 left-28 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full shadow-lg"></div>
+                    <div className="absolute -bottom-6 right-12 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full shadow-lg"></div>
+                    <div className="absolute -bottom-6 right-28 w-10 h-10 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full shadow-lg"></div>
                   </div>
 
-                  {/* Road */}
-                  <div className="absolute -bottom-8 left-0 right-0 h-4 bg-gray-600 rounded-full"></div>
-                  <div className="absolute -bottom-6 left-0 right-0 h-0.5 bg-white"></div>
+                  {/* Road with More Detail */}
+                  <div className="absolute -bottom-12 left-0 right-0 h-6 bg-gradient-to-r from-gray-700 to-gray-600 rounded-full shadow-xl"></div>
+                  <div className="absolute -bottom-9 left-0 right-0 h-0.5 bg-[#f6a201]"></div>
+                  <div className="absolute -bottom-8 left-0 right-0 h-0.5 bg-white/50"></div>
                 </div>
               </motion.div>
 
-              {/* Floating Icons */}
+              {/* Floating Service Icons with Better Design */}
               <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5, duration: 0.8 }}
-                className="absolute top-10 right-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 1.5, duration: 1.2, ease: "easeOut" }}
+                className="absolute top-8 right-8 w-20 h-20 bg-gradient-to-br from-[#F07B09]/20 to-[#f6a201]/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-[#F07B09]/30 shadow-xl"
               >
-                <Ship className="text-white w-8 h-8" />
+                <Ship className="text-[#f6a201] w-10 h-10" />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2, duration: 0.8 }}
-                className="absolute bottom-20 left-10 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: 180 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 2, duration: 1.2, ease: "easeOut" }}
+                className="absolute bottom-24 left-8 w-20 h-20 bg-gradient-to-br from-[#f6a201]/20 to-[#F07B09]/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-[#f6a201]/30 shadow-xl"
               >
-                <MapPin className="text-white w-8 h-8" />
+                <MapPin className="text-[#F07B09] w-10 h-10" />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2.5, duration: 0.8 }}
-                className="absolute top-1/2 left-5 w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0, rotate: -90 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 2.5, duration: 1.2, ease: "easeOut" }}
+                className="absolute top-1/2 left-4 w-20 h-20 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-xl"
               >
-                <Globe className="text-white w-8 h-8" />
+                <Globe className="text-white w-10 h-10" />
               </motion.div>
+
+              {/* Additional Transportation Elements */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 3, duration: 1 }}
+                className="absolute top-16 left-16 w-4 h-4 bg-[#F07B09] rounded-full animate-pulse"
+              />
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 3.2, duration: 1 }}
+                className="absolute bottom-32 right-16 w-3 h-3 bg-[#f6a201] rounded-full animate-pulse"
+              />
             </div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Sophisticated Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -241,15 +276,24 @@ export default function HeroSection() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-white rounded-full flex justify-center"
+          animate={{ y: [0, 15, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center space-y-2"
         >
+          <div className="w-8 h-12 border-2 border-white/30 rounded-full flex justify-center backdrop-blur-sm">
+            <motion.div
+              animate={{ y: [0, 16, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="w-1 h-4 bg-gradient-to-b from-[#F07B09] to-[#f6a201] rounded-full mt-2"
+            />
+          </div>
           <motion.div
-            animate={{ y: [0, 12, 0] }}
+            animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-white rounded-full mt-2"
-          />
+            className="text-white/60 text-xs font-medium tracking-wider uppercase"
+          >
+            Scroll
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

@@ -7,8 +7,6 @@ import Image from 'next/image';
 import { 
   Package, 
   Wrench, 
-  Ship, 
-  Globe,
   Shield,
   Clock,
   CheckCircle,
@@ -162,112 +160,152 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Header */}
+    <section ref={ref} className="relative py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%22120%22%20height%3D%22120%22%20viewBox%3D%220%200%20120%20120%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23F07B09%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M60%2060h60v60H60z%22/%3E%3Cpath%20d%3D%22M0%200h60v60H0z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Sophisticated Header */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
+          <motion.div variants={itemVariants} className="inline-flex items-center space-x-3 mb-6">
+            <div className="w-2 h-2 bg-[#F07B09] rounded-full"></div>
+            <span className="px-4 py-2 bg-gradient-to-r from-[#F07B09]/10 to-[#f6a201]/10 text-[#F07B09] font-semibold rounded-full text-sm border border-[#F07B09]/20">
+              OUR SERVICES
+            </span>
+            <div className="w-2 h-2 bg-[#f6a201] rounded-full"></div>
+          </motion.div>
+          
           <motion.h2 
             variants={itemVariants}
-            className="text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
+            className="text-5xl lg:text-7xl font-black text-slate-900 mb-8 leading-tight"
           >
-            {tHome('services.title')}
+            <span className="block">TRANSPORTATION</span>
+            <span className="block bg-gradient-to-r from-[#F07B09] to-[#f6a201] bg-clip-text text-transparent">
+              SOLUTIONS
+            </span>
           </motion.h2>
+          
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
+            className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-light"
           >
             {tHome('services.subtitle')}
           </motion.p>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Sophisticated Services Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
         >
           {services.map((service, index) => (
             <motion.div
               key={service.id}
               variants={itemVariants}
               whileHover={{ 
-                y: -10,
-                transition: { duration: 0.3 }
+                y: -15,
+                scale: 1.02,
+                transition: { duration: 0.4, ease: "easeOut" }
               }}
               className="group relative"
             >
-              <div className={`${service.bgColor} rounded-2xl p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100`}>
-                {/* Service Image */}
-                <div className="mb-6">
+              <div className="relative bg-white rounded-3xl p-0 h-full shadow-xl hover:shadow-2xl transition-all duration-500 border border-slate-200/50 overflow-hidden">
+                {/* Service Image with Overlay */}
+                <div className="relative h-56 overflow-hidden">
                   <Image
                     src={service.image}
                     alt={service.title}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover rounded-lg"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  
+                  {/* Floating Icon */}
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    transition={{ duration: 0.6 }}
+                    className={`absolute top-4 right-4 w-14 h-14 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                  >
+                    <service.icon className="text-white text-xl" />
+                  </motion.div>
+                  
+                  {/* Service Number */}
+                  <div className="absolute bottom-4 left-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">{index + 1}</span>
+                  </div>
                 </div>
-                
-                {/* Icon */}
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
-                  className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  <service.icon className="text-white text-2xl" />
-                </motion.div>
 
                 {/* Content */}
-                <div className="mb-6">
-                  <h3 className={`text-2xl font-bold ${service.textColor} mb-4`}>
+                <div className="p-8">
+                  <h3 className={`text-2xl font-black ${service.textColor} mb-4 group-hover:scale-105 transition-transform duration-300`}>
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-4">
+                  <p className="text-slate-600 leading-relaxed mb-6 text-base">
                     {service.description}
                   </p>
+
+                  {/* Features with Better Design */}
+                  <div className="space-y-3">
+                    {service.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={featureIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                        transition={{ delay: 0.5 + (index * 0.1) + (featureIndex * 0.1) }}
+                        className="flex items-center space-x-3 group/feature"
+                      >
+                        <div className={`w-2 h-2 bg-gradient-to-r ${service.color} rounded-full group-hover/feature:scale-125 transition-transform duration-300`}></div>
+                        <span className="text-slate-700 text-sm font-medium">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Features */}
-                <div className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <motion.div
-                      key={featureIndex}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ delay: 0.5 + (index * 0.1) + (featureIndex * 0.1) }}
-                      className="flex items-center space-x-3"
-                    >
-                      <CheckCircle className={`${service.textColor} w-4 h-4`} />
-                      <span className="text-gray-700 text-sm">{feature}</span>
-                    </motion.div>
-                  ))}
-                </div>
+                {/* Sophisticated Decorative Elements */}
+                <div className={`absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br ${service.color} rounded-full opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                <div className={`absolute -bottom-4 -left-4 w-20 h-20 bg-gradient-to-tr ${service.color} rounded-full opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
               </div>
-
-              {/* Decorative Element */}
-              <div className={`absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-r ${service.color} rounded-full opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Values Section */}
+        {/* Sophisticated Values Section */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="bg-gray-50 rounded-3xl p-12"
+          className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl p-16 overflow-hidden"
         >
-          <motion.div variants={itemVariants} className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-800 mb-4">
-              {tHome('values.title')}
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23F07B09%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+          </div>
+          
+          <motion.div variants={itemVariants} className="text-center mb-16 relative z-10">
+            <div className="inline-flex items-center space-x-3 mb-6">
+              <div className="w-2 h-2 bg-[#F07B09] rounded-full"></div>
+              <span className="px-4 py-2 bg-gradient-to-r from-[#F07B09]/20 to-[#f6a201]/20 text-[#f6a201] font-semibold rounded-full text-sm border border-[#F07B09]/30">
+                OUR VALUES
+              </span>
+              <div className="w-2 h-2 bg-[#f6a201] rounded-full"></div>
+            </div>
+            
+            <h3 className="text-4xl lg:text-6xl font-black text-white mb-6">
+              <span className="block">TRANSPORTATION</span>
+              <span className="block bg-gradient-to-r from-[#F07B09] to-[#f6a201] bg-clip-text text-transparent">
+                EXCELLENCE
+              </span>
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
               {tHome('values.subtitle')}
             </p>
           </motion.div>
@@ -276,28 +314,34 @@ export default function ServicesSection() {
             variants={containerVariants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-3 gap-8 relative z-10"
           >
             {values.map((value, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                className="text-center group"
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="text-center group relative"
               >
-                <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
-                  className={`w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300`}
-                >
-                  <value.icon className={`text-3xl ${value.color}`} />
-                </motion.div>
-                <h4 className="text-xl font-bold text-gray-800 mb-4">
-                  {value.title}
-                </h4>
-                <p className="text-gray-600 leading-relaxed">
-                  {value.description}
-                </p>
+                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-[#F07B09]/30 transition-all duration-500">
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    className={`w-24 h-24 bg-gradient-to-br ${value.color.replace('text-', 'from-').replace('-600', '-600')} to-${value.color.replace('text-', '').replace('-600', '-700')} rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-2xl group-hover:shadow-[#F07B09]/25 transition-all duration-300`}
+                  >
+                    <value.icon className="text-white text-3xl" />
+                  </motion.div>
+                  
+                  <h4 className="text-2xl font-black text-white mb-4 group-hover:text-[#f6a201] transition-colors duration-300">
+                    {value.title}
+                  </h4>
+                  <p className="text-slate-300 leading-relaxed text-base">
+                    {value.description}
+                  </p>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#F07B09]/20 to-[#f6a201]/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </motion.div>
             ))}
           </motion.div>
