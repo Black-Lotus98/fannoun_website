@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { User, Truck, Wrench, Settings, Users, Award } from 'lucide-react';
 
 export default function TeamSection() {
@@ -42,9 +43,10 @@ export default function TeamSection() {
       position: tHome('team.mohammed.position'),
       description: tHome('team.mohammed.description'),
       icon: User,
-      color: 'from-blue-600 to-blue-700',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-600'
+      color: 'from-[#F07B09] to-[#f6a201]',
+      bgColor: 'bg-orange-50',
+      textColor: 'text-[#F07B09]',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format',
     },
     {
       id: 'maintenance',
@@ -54,7 +56,8 @@ export default function TeamSection() {
       icon: Wrench,
       color: 'from-green-600 to-green-700',
       bgColor: 'bg-green-50',
-      textColor: 'text-green-600'
+      textColor: 'text-green-600',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&auto=format',
     },
     {
       id: 'alaa',
@@ -64,7 +67,8 @@ export default function TeamSection() {
       icon: Settings,
       color: 'from-orange-600 to-orange-700',
       bgColor: 'bg-orange-50',
-      textColor: 'text-orange-600'
+      textColor: 'text-orange-600',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&auto=format',
     }
   ];
 
@@ -92,7 +96,7 @@ export default function TeamSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-gray-900 via-[#F07B09] to-gray-800">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -109,7 +113,7 @@ export default function TeamSection() {
           </motion.h2>
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-blue-100 max-w-3xl mx-auto"
+            className="text-xl text-white/90 max-w-3xl mx-auto"
           >
             {tHome('team.subtitle')}
           </motion.p>
@@ -134,6 +138,17 @@ export default function TeamSection() {
               className="group relative"
             >
               <div className={`${member.bgColor} rounded-2xl p-8 h-full shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-100`}>
+                {/* Team Member Image */}
+                <div className="mb-6">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    width={400}
+                    height={400}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
+                
                 {/* Icon */}
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
@@ -174,7 +189,7 @@ export default function TeamSection() {
             <h3 className="text-3xl font-bold text-white mb-4">
               {tHome('team.stats.title')}
             </h3>
-            <p className="text-lg text-blue-100">
+            <p className="text-lg text-white/90">
               {tHome('team.stats.subtitle')}
             </p>
           </motion.div>
@@ -202,7 +217,7 @@ export default function TeamSection() {
                 <div className="text-4xl font-bold text-white mb-2">
                   {stat.number}
                 </div>
-                <div className="text-blue-100 text-sm">
+                <div className="text-white/80 text-sm">
                   {stat.label}
                 </div>
               </motion.div>
@@ -230,7 +245,7 @@ export default function TeamSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300"
             >
               {tHome('team.cta.button')}
             </motion.button>

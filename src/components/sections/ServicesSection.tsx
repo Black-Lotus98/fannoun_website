@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { 
   Package, 
   Wrench, 
@@ -52,9 +53,10 @@ export default function ServicesSection() {
       title: tHome('services.liquid.title'),
       description: tHome('services.liquid.description'),
       icon: Fuel,
-      color: 'from-blue-600 to-blue-700',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-600',
+      color: 'from-[#F07B09] to-[#f6a201]',
+      bgColor: 'bg-orange-50',
+      textColor: 'text-[#F07B09]',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.liquid.features.1'),
         tHome('services.liquid.features.2'),
@@ -69,6 +71,7 @@ export default function ServicesSection() {
       color: 'from-green-600 to-green-700',
       bgColor: 'bg-green-50',
       textColor: 'text-green-600',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.dry.features.1'),
         tHome('services.dry.features.2'),
@@ -83,6 +86,7 @@ export default function ServicesSection() {
       color: 'from-purple-600 to-purple-700',
       bgColor: 'bg-purple-50',
       textColor: 'text-purple-600',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.container.features.1'),
         tHome('services.container.features.2'),
@@ -97,6 +101,7 @@ export default function ServicesSection() {
       color: 'from-orange-600 to-orange-700',
       bgColor: 'bg-orange-50',
       textColor: 'text-orange-600',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.tires.features.1'),
         tHome('services.tires.features.2'),
@@ -111,6 +116,7 @@ export default function ServicesSection() {
       color: 'from-indigo-600 to-indigo-700',
       bgColor: 'bg-indigo-50',
       textColor: 'text-indigo-600',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.crossBorder.features.1'),
         tHome('services.crossBorder.features.2'),
@@ -125,6 +131,7 @@ export default function ServicesSection() {
       color: 'from-red-600 to-red-700',
       bgColor: 'bg-red-50',
       textColor: 'text-red-600',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&auto=format',
       features: [
         tHome('services.logistics.features.1'),
         tHome('services.logistics.features.2'),
@@ -144,7 +151,7 @@ export default function ServicesSection() {
       icon: Clock,
       title: tHome('values.reliability.title'),
       description: tHome('values.reliability.description'),
-      color: 'text-blue-600'
+      color: 'text-[#F07B09]'
     },
     {
       icon: CheckCircle,
@@ -196,6 +203,17 @@ export default function ServicesSection() {
               className="group relative"
             >
               <div className={`${service.bgColor} rounded-2xl p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100`}>
+                {/* Service Image */}
+                <div className="mb-6">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={400}
+                    height={300}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
+                
                 {/* Icon */}
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}

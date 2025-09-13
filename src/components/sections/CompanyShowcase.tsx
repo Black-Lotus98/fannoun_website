@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 import { Truck, Package, Wrench, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function CompanyShowcase() {
@@ -42,9 +43,10 @@ export default function CompanyShowcase() {
       subtitle: tHome('companies.ramz.subtitle'),
       description: tHome('companies.ramz.description'),
       icon: Truck,
-      color: 'from-blue-600 to-blue-700',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-600',
+      color: 'from-[#F07B09] to-[#f6a201]',
+      bgColor: 'bg-orange-50',
+      textColor: 'text-[#F07B09]',
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&h=300&fit=crop&auto=format',
       features: [
         tHome('companies.ramz.features.1'),
         tHome('companies.ramz.features.2'),
@@ -60,6 +62,7 @@ export default function CompanyShowcase() {
       color: 'from-green-600 to-green-700',
       bgColor: 'bg-green-50',
       textColor: 'text-green-600',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop&auto=format',
       features: [
         tHome('companies.fannoun.features.1'),
         tHome('companies.fannoun.features.2'),
@@ -75,6 +78,7 @@ export default function CompanyShowcase() {
       color: 'from-orange-600 to-orange-700',
       bgColor: 'bg-orange-50',
       textColor: 'text-orange-600',
+      image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop&auto=format',
       features: [
         tHome('companies.tires.features.1'),
         tHome('companies.tires.features.2'),
@@ -123,6 +127,17 @@ export default function CompanyShowcase() {
               className="group relative"
             >
               <div className={`${company.bgColor} rounded-2xl p-8 h-full shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100`}>
+                {/* Company Image */}
+                <div className="mb-6">
+                  <Image
+                    src={company.image}
+                    alt={company.name}
+                    width={500}
+                    height={300}
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                </div>
+                
                 {/* Icon */}
                 <motion.div
                   whileHover={{ rotate: 360 }}
@@ -198,7 +213,7 @@ export default function CompanyShowcase() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300"
+              className="px-8 py-4 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300"
             >
               {tHome('companies.promise.cta')}
             </motion.button>

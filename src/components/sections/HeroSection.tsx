@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Ship, Globe, MapPin } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import Image from 'next/image';
 
 export default function HeroSection() {
   const tHome = useTranslations('home');
@@ -48,8 +49,19 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
-      {/* Background Pattern */}
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#F07B09] via-[#f6a201] to-[#F07B09]">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop&auto=format"
+          alt="Transportation trucks on highway"
+          fill
+          className="object-cover opacity-20"
+          priority
+        />
+      </div>
+      
+      {/* Background Pattern Overlay */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
       </div>
@@ -83,7 +95,7 @@ export default function HeroSection() {
           {/* Content */}
           <div className="text-white">
             <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 bg-yellow-400 text-blue-900 font-semibold rounded-full text-sm">
+              <span className="inline-block px-4 py-2 bg-white text-[#F07B09] font-semibold rounded-full text-sm">
                 {tHome('hero.badge')}
               </span>
             </motion.div>
@@ -97,14 +109,14 @@ export default function HeroSection() {
 
             <motion.p 
               variants={itemVariants}
-              className="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed"
+              className="text-xl lg:text-2xl mb-8 text-white leading-relaxed"
             >
               {tHome('hero.subtitle')}
             </motion.p>
 
             <motion.p 
               variants={itemVariants}
-              className="text-lg mb-10 text-blue-200 max-w-2xl"
+              className="text-lg mb-10 text-white/90 max-w-2xl"
             >
               {tHome('hero.description')}
             </motion.p>
@@ -116,14 +128,14 @@ export default function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-yellow-400 text-blue-900 font-bold rounded-lg text-lg hover:bg-yellow-300 transition-colors duration-200"
+                className="px-8 py-4 bg-white text-[#F07B09] font-bold rounded-lg text-lg hover:bg-gray-100 transition-colors duration-200"
               >
                 {tHome('hero.cta.primary')}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg text-lg hover:bg-white hover:text-blue-900 transition-colors duration-200"
+                className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg text-lg hover:bg-white hover:text-[#F07B09] transition-colors duration-200"
               >
                 {tHome('hero.cta.secondary')}
               </motion.button>
@@ -135,16 +147,16 @@ export default function HeroSection() {
               className="mt-16 grid grid-cols-3 gap-8"
             >
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">50+</div>
-                <div className="text-sm text-blue-200">{tHome('hero.stats.years')}</div>
+                <div className="text-3xl font-bold text-white">50+</div>
+                <div className="text-sm text-white/80">{tHome('hero.stats.years')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">200+</div>
-                <div className="text-sm text-blue-200">{tHome('hero.stats.trucks')}</div>
+                <div className="text-3xl font-bold text-white">200+</div>
+                <div className="text-sm text-white/80">{tHome('hero.stats.trucks')}</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-400">100%</div>
-                <div className="text-sm text-blue-200">{tHome('hero.stats.reliability')}</div>
+                <div className="text-3xl font-bold text-white">100%</div>
+                <div className="text-sm text-white/80">{tHome('hero.stats.reliability')}</div>
               </div>
             </motion.div>
           </div>
@@ -165,13 +177,13 @@ export default function HeroSection() {
                   {/* Truck Body */}
                   <div className="w-80 h-40 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg shadow-2xl relative">
                     {/* Truck Cab */}
-                    <div className="absolute left-4 top-2 w-24 h-32 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg">
+                    <div className="absolute left-4 top-2 w-24 h-32 bg-gradient-to-r from-[#F07B09] to-[#f6a201] rounded-lg">
                       <div className="absolute top-2 left-2 w-20 h-6 bg-white/30 rounded"></div>
                       <div className="absolute bottom-2 left-2 w-20 h-4 bg-white/20 rounded"></div>
                     </div>
                     
                     {/* Container */}
-                    <div className="absolute right-4 top-2 w-48 h-32 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-lg">
+                    <div className="absolute right-4 top-2 w-48 h-32 bg-gradient-to-r from-white to-gray-100 rounded-lg">
                       <div className="absolute top-2 left-2 w-44 h-6 bg-white/30 rounded"></div>
                       <div className="absolute bottom-2 left-2 w-44 h-4 bg-white/20 rounded"></div>
                     </div>
@@ -185,7 +197,7 @@ export default function HeroSection() {
 
                   {/* Road */}
                   <div className="absolute -bottom-8 left-0 right-0 h-4 bg-gray-600 rounded-full"></div>
-                  <div className="absolute -bottom-6 left-0 right-0 h-0.5 bg-yellow-400"></div>
+                  <div className="absolute -bottom-6 left-0 right-0 h-0.5 bg-white"></div>
                 </div>
               </motion.div>
 

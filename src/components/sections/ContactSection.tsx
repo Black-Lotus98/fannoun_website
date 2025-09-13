@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
+import Image from 'next/image';
 import { 
   Phone, 
   Mail, 
@@ -73,7 +74,7 @@ export default function ContactSection() {
         '+962 6 416 1797',
         '+962 6 416 5540'
       ],
-      color: 'text-blue-600'
+      color: 'text-[#F07B09]'
     },
     {
       icon: Mail,
@@ -189,7 +190,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F07B09] focus:border-transparent transition-all duration-200"
                       placeholder={tContact('form.namePlaceholder')}
                     />
                   </motion.div>
@@ -204,7 +205,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F07B09] focus:border-transparent transition-all duration-200"
                       placeholder={tContact('form.emailPlaceholder')}
                     />
                   </motion.div>
@@ -220,7 +221,7 @@ export default function ContactSection() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F07B09] focus:border-transparent transition-all duration-200"
                       placeholder={tContact('form.phonePlaceholder')}
                     />
                   </motion.div>
@@ -233,7 +234,7 @@ export default function ContactSection() {
                       name="service"
                       value={formData.service}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#F07B09] focus:border-transparent transition-all duration-200"
                     >
                       <option value="">{tContact('form.servicePlaceholder')}</option>
                       {services.map((service) => (
@@ -266,7 +267,7 @@ export default function ContactSection() {
                   whileTap={{ scale: 0.98 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                  className="w-full py-4 px-6 bg-gradient-to-r from-[#F07B09] to-[#f6a201] text-white font-bold rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -325,15 +326,22 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Map Placeholder */}
+            {/* Google Maps Embed */}
             <motion.div
               variants={itemVariants}
-              className="bg-gray-200 rounded-lg h-64 flex items-center justify-center"
+              className="rounded-lg h-64 overflow-hidden shadow-lg"
             >
-              <div className="text-center">
-                <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">{tContact('map.placeholder')}</p>
-              </div>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3387.396101825398!2d35.96120707623316!3d31.895833528495068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b5ed470e6cf63%3A0x38ec19f97a628372!2z2YHZhtmI2YYg2YTZhNmG2YLZhChGYW5ub3VuIFRyYW5zcG9ydGluZyBDbyk!5e0!3m2!1sen!2sjo!4v1757764006818!5m2!1sen!2sjo" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+                title="Fannoun Transporting Co Location"
+              />
             </motion.div>
           </motion.div>
         </div>
