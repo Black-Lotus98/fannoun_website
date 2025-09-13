@@ -181,6 +181,7 @@ export default function TeamSection() {
             }
             .team-slider .slick-slide {
               padding: 0 12px;
+              height: auto;
             }
             .team-slider .slick-track {
               display: flex;
@@ -188,6 +189,10 @@ export default function TeamSection() {
             }
             .team-slider .slick-slide > div {
               height: 100%;
+              display: flex;
+            }
+            .team-slider .slick-list {
+              overflow: visible;
             }
           `}</style>
         </motion.div>

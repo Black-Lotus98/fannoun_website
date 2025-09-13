@@ -110,9 +110,6 @@ export default function HeroSection() {
             <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
               <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
                 <span className="block text-white">{tHome('hero.title')}</span>
-                <span className="block bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
-                  TRANSPORT
-                </span>
               </h1>
             </motion.div>
 
@@ -165,7 +162,7 @@ export default function HeroSection() {
                 <div className="text-xs sm:text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.years')}</div>
               </div>
               <div className="text-center group">
-                <div className="text-3xl sm:text-4xl font-black text-primary-light mb-2 group-hover:scale-110 transition-transform duration-300">200+</div>
+                <div className="text-3xl sm:text-4xl font-black text-primary-light mb-2 group-hover:scale-110 transition-transform duration-300">60+</div>
                 <div className="text-xs sm:text-sm text-white/70 font-medium uppercase tracking-wider">{tHome('hero.stats.trucks')}</div>
               </div>
               <div className="text-center group">

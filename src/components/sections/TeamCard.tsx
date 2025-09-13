@@ -61,9 +61,9 @@ export default function TeamCard({ member, index }: TeamCardProps) {
       transition={{ delay: index * 0.1, duration: 0.6 }}
       className="px-3"
     >
-      <div className={`${colors.card} rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 group h-full`}>
+      <div className={`${colors.card} rounded-2xl p-6 shadow-2xl hover:shadow-3xl transition-all duration-300 group h-[500px] flex flex-col`}>
         {/* Image Container */}
-        <div className="relative mb-6">
+        <div className="relative mb-6 flex-shrink-0">
           <div className="relative w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white/20 group-hover:border-white/40 transition-all duration-300">
             <Image
               src={member.image}
@@ -72,31 +72,30 @@ export default function TeamCard({ member, index }: TeamCardProps) {
               className="object-cover group-hover:scale-110 transition-transform duration-300"
             />
           </div>
-          {/* Status Indicator */}
-          <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
+         
         </div>
 
         {/* Content */}
-        <div className="text-center space-y-4">
+        <div className="text-center flex flex-col flex-grow">
           {/* Name */}
-          <h3 className={`${colors.text} text-xl font-bold group-hover:text-white transition-colors duration-300`}>
+          <h3 className={`${colors.text} text-xl font-bold group-hover:text-white transition-colors duration-300 mb-3`}>
             {member.name}
           </h3>
 
           {/* Position */}
-          <div className={`${colors.accent} rounded-full px-4 py-2 inline-block`}>
+          <div className={`${colors.accent} rounded-full px-4 py-2 inline-block mb-4`}>
             <p className={`${colors.text} text-sm font-semibold`}>
               {member.position}
             </p>
           </div>
 
           {/* Description */}
-          <p className={`${colors.text} text-sm leading-relaxed opacity-90`}>
+          <p className={`${colors.text} text-sm leading-relaxed opacity-90 flex-grow mb-6`}>
             {member.description}
           </p>
 
           {/* Social Links */}
-          <div className="flex justify-center space-x-3 pt-4">
+          <div className="flex justify-center space-x-3 mt-auto">
             <motion.button
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}

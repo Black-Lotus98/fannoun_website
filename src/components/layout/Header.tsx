@@ -52,15 +52,15 @@ export default function Header() {
         <div className="container mx-auto flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-primary-light" />
+                <Phone className="w-4 h-4 text-white" />
                 <span>+962 6 416 9422</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-primary-light" />
+                <Mail className="w-4 h-4 text-white" />
                 <span>info@fannoun.com</span>
               </div>
             </div>
-          <div className="text-primary-light">
+          <div className="text-white">
             {tHeader('tagline')}
           </div>
         </div>
