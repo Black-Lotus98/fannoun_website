@@ -2,17 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
-import { useSliderConfig } from '../../hooks/useSliderConfig';
-import TeamCard from './TeamCard';
+import { useSliderConfig } from '@/hooks/useSliderConfig';
+import TeamCard from '@/components/sections/TeamCard';
 import { Users, Star, Award } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// Team members data
-const teamMembers = [
+// Leadership team members data
+const leadershipMembers = [
   {
     id: 'yaser-fannoun',
     name: 'Yaser Fannoun',
@@ -55,11 +53,8 @@ const teamMembers = [
   }
 ];
 
-export default function TeamSection() {
-  // const tHome = useTranslations('home');
+export default function LeadershipSection() {
   const [mounted, setMounted] = useState(false);
-  const pathname = usePathname();
-  const locale = pathname.split('/')[1] || 'en';
   
   const sliderConfig = useSliderConfig({
     slidesToShow: 3,
@@ -103,80 +98,121 @@ export default function TeamSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-gradient-to-br from-white via-gray-50 to-white relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-20 w-96 h-96 bg-primary-light/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-accent/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="inline-flex items-center space-x-3 mb-4">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <span className="px-6 py-3 bg-gradient-to-r from-primary/20 to-primary-light/20 backdrop-blur-sm border border-primary/30 text-primary font-semibold rounded-full text-sm">
-                Leadership Team
+          <motion.div variants={itemVariants} className="mb-12">
+            <div className="inline-flex items-center space-x-4 mb-6 group">
+              <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+              <span className="px-8 py-4 bg-gradient-to-r from-primary/10 to-primary-light/10 backdrop-blur-md border border-primary/20 text-primary font-bold rounded-full text-sm tracking-wider group-hover:scale-105 transition-transform duration-300">
+                LEADERSHIP TEAM
               </span>
             </div>
-            <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6">
-              <span className="block">Meet Our</span>
-              <span className="block bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">
+            <h2 className="text-5xl lg:text-7xl font-black text-gray-900 mb-8 leading-tight">
+              <span className="block opacity-90">Our</span>
+              <span className="block bg-gradient-to-r from-primary via-primary-light to-accent bg-clip-text text-transparent">
                 LEADERSHIP
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
               Our experienced leadership team brings decades of combined expertise in transportation, logistics, and business management to ensure Fannoun continues to lead the industry.
             </p>
           </motion.div>
 
-          {/* Stats */}
+          {/* Enhanced Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20"
           >
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Users className="text-white w-8 h-8" />
+            <motion.div 
+              className="text-center group"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="relative">
+                <div className="w-20 h-20 bg-gradient-to-r from-primary to-primary-light rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-primary/20">
+                  <Users className="text-white w-10 h-10" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">+</span>
+                </div>
               </div>
-              <div className="text-3xl font-black text-primary mb-2">5</div>
-              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+              <div className="text-4xl font-black text-primary mb-3 group-hover:scale-110 transition-transform duration-300">5</div>
+              <div className="text-sm text-gray-600 font-bold uppercase tracking-wider">
                 General Managers
               </div>
-            </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary-light to-primary rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Star className="text-white w-8 h-8" />
+            </motion.div>
+            
+            <motion.div 
+              className="text-center group"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="relative">
+                <div className="w-20 h-20 bg-gradient-to-r from-primary-light to-accent rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-primary-light/20">
+                  <Star className="text-white w-10 h-10" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">+</span>
+                </div>
               </div>
-              <div className="text-3xl font-black text-primary-light mb-2">50+</div>
-              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+              <div className="text-4xl font-black text-primary-light mb-3 group-hover:scale-110 transition-transform duration-300">50</div>
+              <div className="text-sm text-gray-600 font-bold uppercase tracking-wider">
                 Years Combined
               </div>
-            </div>
-            <div className="text-center group">
-              <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                <Award className="text-white w-8 h-8" />
+            </motion.div>
+            
+            <motion.div 
+              className="text-center group"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="relative">
+                <div className="w-20 h-20 bg-gradient-to-r from-accent to-primary rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-accent/20">
+                  <Award className="text-white w-10 h-10" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary-light rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">%</span>
+                </div>
               </div>
-              <div className="text-3xl font-black text-primary mb-2">100%</div>
-              <div className="text-sm text-gray-600 font-medium uppercase tracking-wider">
+              <div className="text-4xl font-black text-accent mb-3 group-hover:scale-110 transition-transform duration-300">100</div>
+              <div className="text-sm text-gray-600 font-bold uppercase tracking-wider">
                 Dedication
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* Team Slider */}
+        {/* Enhanced Team Slider */}
         <motion.div
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="relative max-w-7xl mx-auto"
+          className="relative max-w-8xl mx-auto"
         >
+          {/* Section Title */}
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">Meet Our Leadership Team</h3>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary to-primary-light mx-auto rounded-full"></div>
+          </div>
           {!mounted ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {teamMembers.map((member) => (
+              {leadershipMembers.map((member) => (
                 <div key={member.id} className="px-3">
                   <div className="bg-gray-200 rounded-2xl p-6 shadow-2xl h-[500px] flex flex-col animate-pulse">
                     <div className="w-32 h-32 mx-auto rounded-full bg-gray-300 mb-6"></div>
@@ -194,7 +230,7 @@ export default function TeamSection() {
             </div>
           ) : (
             <Slider {...sliderConfig} className="team-slider">
-              {teamMembers.map((member, index) => (
+              {leadershipMembers.map((member, index) => (
                 <TeamCard
                   key={member.id}
                   member={member}
@@ -226,25 +262,6 @@ export default function TeamSection() {
               overflow: visible;
             }
           `}</style>
-        </motion.div>
-
-        {/* View Full Team Button */}
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <Link
-            href={`/${locale}/team`}
-            className="inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-light text-white font-bold rounded-2xl hover:from-primary-light hover:to-primary transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-primary/25"
-          >
-            <span>View Full Team</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
         </motion.div>
       </div>
     </section>

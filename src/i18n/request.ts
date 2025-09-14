@@ -12,11 +12,12 @@ export default getRequestConfig(async ({ locale }) => {
   }
 
   // Load all translation namespaces
-  const [common, home, about, contact, header] = await Promise.all([
+  const [common, home, about, contact, team, header] = await Promise.all([
     import(`../../messages/${locale}/common.json`),
     import(`../../messages/${locale}/pages/home.json`),
     import(`../../messages/${locale}/pages/about.json`),
     import(`../../messages/${locale}/pages/contact.json`),
+    import(`../../messages/${locale}/pages/team.json`),
     import(`../../messages/${locale}/components/header.json`),
   ]);
 
@@ -27,6 +28,7 @@ export default getRequestConfig(async ({ locale }) => {
       home: home.default,
       about: about.default,
       contact: contact.default,
+      team: team.default,
       header: header.default,
     },
   };

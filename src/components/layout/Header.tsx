@@ -12,12 +12,16 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const tHeader = useTranslations('header');
   const pathname = usePathname();
+  
+  // Extract locale from pathname
+  const locale = pathname.split('/')[1] || 'en';
 
   const navigation = [
-    { name: tHeader('nav.home'), href: '/', key: 'home' },
-    { name: tHeader('nav.about'), href: '/about', key: 'about' },
-    { name: tHeader('nav.gallery'), href: '/gallery', key: 'gallery' },
-    { name: tHeader('nav.contact'), href: '/contact', key: 'contact' },
+    { name: tHeader('nav.home'), href: `/${locale}`, key: 'home' },
+    { name: tHeader('nav.about'), href: `/${locale}/about`, key: 'about' },
+    { name: tHeader('nav.team'), href: `/${locale}/team`, key: 'team' },
+    { name: tHeader('nav.gallery'), href: `/${locale}/gallery`, key: 'gallery' },
+    { name: tHeader('nav.contact'), href: `/${locale}/contact`, key: 'contact' },
   ];
 
   useEffect(() => {

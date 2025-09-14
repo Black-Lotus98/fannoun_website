@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Linkedin, Mail, Phone } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface TeamMember {
   id: string;
@@ -53,6 +54,31 @@ const colorVariants = {
 
 export default function TeamCard({ member, index }: TeamCardProps) {
   const colors = colorVariants[member.colorVariant];
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="px-3">
+        <div className={`${colors.card} rounded-2xl p-6 shadow-2xl h-[500px] flex flex-col`}>
+          <div className="animate-pulse">
+            <div className="w-32 h-32 mx-auto rounded-full bg-white/20 mb-6"></div>
+            <div className="h-6 bg-white/20 rounded mb-4"></div>
+            <div className="h-4 bg-white/20 rounded mb-4"></div>
+            <div className="h-4 bg-white/20 rounded mb-6"></div>
+            <div className="flex justify-center space-x-3">
+              <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+              <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+              <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <motion.div

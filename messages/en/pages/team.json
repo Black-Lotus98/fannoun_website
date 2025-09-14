@@ -1,0 +1,66 @@
+{
+  "title": "Our Team",
+  "subtitle": "Meet the amazing people behind Fannoun Transportation",
+  "description": "Our diverse team of professionals brings together decades of experience in transportation, logistics, and business management. Each member plays a crucial role in our continued success and growth.",
+  "hero": {
+    "badge": "Our Team",
+    "title": "Meet Our",
+    "subtitle": "AMAZING TEAM",
+    "description": "Our diverse team of professionals brings together decades of experience in transportation, logistics, and business management. Each member plays a crucial role in our continued success and growth.",
+    "stats": {
+      "members": "Team Members",
+      "experience": "Years Combined",
+      "departments": "Departments",
+      "dedication": "Dedication"
+    }
+  },
+  "leadership": {
+    "badge": "Leadership Team",
+    "title": "Our",
+    "subtitle": "LEADERSHIP",
+    "description": "Our experienced leadership team brings decades of combined expertise in transportation, logistics, and business management to ensure Fannoun continues to lead the industry.",
+    "stats": {
+      "managers": "General Managers",
+      "experience": "Years Combined",
+      "dedication": "Dedication"
+    }
+  },
+  "management": {
+    "badge": "Management Team",
+    "title": "Our",
+    "subtitle": "MANAGEMENT",
+    "description": "Our management team ensures the smooth operation of all departments, maintaining high standards and driving continuous improvement across the organization.",
+    "stats": {
+      "managers": "Department Managers",
+      "experience": "Years Average",
+      "efficiency": "Efficiency",
+      "members": "Team Members"
+    }
+  },
+  "operations": {
+    "badge": "Operations Team",
+    "title": "Our",
+    "subtitle": "OPERATIONS",
+    "description": "Our operations team is the backbone of our company, ensuring smooth execution of all transportation activities with dedication and expertise.",
+    "stats": {
+      "staff": "Operations Staff",
+      "experience": "Years Experience",
+      "routes": "Routes Covered",
+      "availability": "Availability"
+    }
+  },
+  "support": {
+    "badge": "Support Team",
+    "title": "Our",
+    "subtitle": "SUPPORT",
+    "description": "Our support team is dedicated to providing exceptional customer service and ensuring all our clients receive the assistance they need.",
+    "stats": {
+      "staff": "Support Staff",
+      "response": "Response Rate",
+      "availability": "Availability",
+      "inquiries": "Daily Inquiries"
+    }
+  }
+}
+
+
