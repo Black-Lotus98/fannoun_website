@@ -10,6 +10,8 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const tHeader = useTranslations('header');
   const pathname = usePathname();
   
@@ -26,20 +28,58 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Update scrolled state for styling
+      setIsScrolled(currentScrollY > 50);
+      
+      // Navbar hide/show logic
+      if (currentScrollY < 100) {
+        // Always show navbar when near top
+        setIsNavbarVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide navbar
+        setIsNavbarVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar
+        setIsNavbarVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // Throttle scroll events for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
+  }, [lastScrollY]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <motion.header
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      animate={{ 
+        y: isNavbarVisible ? 0 : -100,
+        opacity: isNavbarVisible ? 1 : 0
+      }}
+      transition={{ 
+        duration: 0.3, 
+        ease: "easeInOut",
+        type: "spring",
+        stiffness: 300,
+        damping: 30
+      }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-lg' 
@@ -53,19 +93,22 @@ export default function Header() {
         transition={{ delay: 0.2, duration: 0.5 }}
         className="bg-primary text-white py-2 px-4"
       >
-        <div className="container mx-auto flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
+        <div className="container mx-auto">
+          {/* Mobile: Stack vertically, Desktop: Side by side */}
+          <div className="flex flex-col sm:flex-row justify-between items-center text-xs sm:text-sm space-y-2 sm:space-y-0">
+            <div className="flex flex-col sm:flex-row items-center space-y-1 sm:space-y-0 sm:space-x-6">
               <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-white" />
-                <span>+962 6 416 9422</span>
+                <Phone className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                <span className="text-xs sm:text-sm">+962 6 416 9422</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-white" />
-                <span>info@fannoun.com</span>
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                <span className="text-xs sm:text-sm">info@fannoun.com</span>
               </div>
             </div>
-          <div className="text-white">
-            {tHeader('tagline')}
+            <div className="text-white text-center sm:text-right text-xs sm:text-sm">
+              {tHeader('tagline')}
+            </div>
           </div>
         </div>
       </motion.div>
@@ -77,16 +120,16 @@ export default function Header() {
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3"
+              className="flex items-center space-x-2 sm:space-x-3"
             >
-              <div className="bg-primary p-3 rounded-lg">
-                <Truck className="text-white w-8 h-8" />
+              <div className="bg-primary p-2 sm:p-3 rounded-lg">
+                <Truck className="text-white w-6 h-6 sm:w-8 sm:h-8" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-800">
+                <h1 className="text-lg sm:text-2xl font-bold text-gray-800">
                   {tHeader('logo')}
                 </h1>
-                <p className="text-sm text-gray-600">
+                <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">
                   {tHeader('subtitle')}
                 </p>
               </div>

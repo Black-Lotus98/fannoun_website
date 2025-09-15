@@ -29,7 +29,7 @@ export default function TeamPageHero() {
     };
 
     return (
-    <section className="relative pt-32 pb-20 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 overflow-hidden">
+    <section className="relative pt-56 sm:pt-44 lg:pt-40 pb-20 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 overflow-hidden">
       {/* Professional Background Elements */}
       <div className="absolute inset-0">
         {/* Professional Floating Shapes */}

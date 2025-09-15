@@ -49,7 +49,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-32 lg:pt-40">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden pt-24 sm:pt-32 lg:pt-40">
       {/* Sophisticated Background with Multiple Layers */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
       
@@ -94,10 +94,10 @@ export default function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center"
         >
           {/* Content */}
-          <div className="text-white space-y-6 lg:space-y-8">
+          <div className="text-white space-y-4 sm:space-y-6 lg:space-y-8">
             {/* Company Badge */}
             <motion.div variants={itemVariants} className="inline-flex items-center space-x-3">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
@@ -108,7 +108,7 @@ export default function HeroSection() {
 
             {/* Main Headline */}
             <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
-              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight">
                 <span className="block text-white">{tHome('hero.title')}</span>
               </h1>
             </motion.div>
@@ -116,7 +116,7 @@ export default function HeroSection() {
             {/* Subtitle */}
             <motion.p 
               variants={itemVariants}
-              className="text-lg sm:text-2xl lg:text-3xl font-light text-white/90 leading-relaxed max-w-2xl"
+              className="text-base sm:text-xl md:text-2xl lg:text-3xl font-light text-white/90 leading-relaxed max-w-2xl"
             >
               {tHome('hero.subtitle')}
             </motion.p>
@@ -124,7 +124,7 @@ export default function HeroSection() {
             {/* Description */}
             <motion.p 
               variants={itemVariants}
-              className="text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed"
+              className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl leading-relaxed"
             >
               {tHome('hero.description')}
             </motion.p>
@@ -132,12 +132,12 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <motion.div 
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-2 sm:pt-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 pt-2 sm:pt-4"
             >
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-primary to-primary-light text-white font-bold rounded-2xl text-base sm:text-lg shadow-2xl hover:shadow-primary/25 transition-all duration-300 overflow-hidden"
+                className="group relative px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 bg-gradient-to-r from-primary to-primary-light text-white font-bold rounded-xl sm:rounded-2xl text-sm sm:text-base md:text-lg shadow-2xl hover:shadow-primary/25 transition-all duration-300 overflow-hidden w-full sm:w-auto"
               >
                 <span className="relative z-10">{tHome('hero.cta.primary')}</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-light to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -146,7 +146,7 @@ export default function HeroSection() {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 sm:px-10 py-4 sm:py-5 border-2 border-white/30 text-white font-semibold rounded-2xl text-base sm:text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+                className="px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 border-2 border-white/30 text-white font-semibold rounded-xl sm:rounded-2xl text-sm sm:text-base md:text-lg backdrop-blur-sm hover:bg-white/10 hover:border-white/50 transition-all duration-300 w-full sm:w-auto"
               >
                 {tHome('hero.cta.secondary')}
               </motion.button>
@@ -155,7 +155,7 @@ export default function HeroSection() {
             {/* Stats Grid */}
             <motion.div 
               variants={itemVariants}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 pb-20 sm:pb-12"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-6 sm:pt-8 pb-16 sm:pb-20 md:pb-12"
             >
               <div className="text-center group">
                 <div className="text-3xl sm:text-4xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300">50+</div>

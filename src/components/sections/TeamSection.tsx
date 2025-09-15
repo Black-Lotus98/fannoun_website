@@ -60,19 +60,51 @@ export default function TeamSection() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const locale = pathname.split('/')[1] || 'en';
-  
+
   const sliderConfig = useSliderConfig({
-    slidesToShow: 3,
+    slidesToShow: 1, // Mobile-first: 1 slide by default
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 4000,
     infinite: true,
-    dots: false,
+    dots: true, // Show dots on mobile
     arrows: false,
     pauseOnHover: true,
     centerMode: false,
     variableWidth: false,
-    adaptiveHeight: true
+    adaptiveHeight: true,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: false,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          arrows: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          arrows: false
+        }
+      }
+    ]
   });
 
   useEffect(() => {
@@ -211,7 +243,7 @@ export default function TeamSection() {
               overflow: hidden;
             }
             .team-slider .slick-slide {
-              padding: 0 12px;
+              padding: 0 8px;
               height: auto;
             }
             .team-slider .slick-track {
@@ -224,6 +256,37 @@ export default function TeamSection() {
             }
             .team-slider .slick-list {
               overflow: visible;
+            }
+            .team-slider .slick-dots {
+              bottom: -50px;
+              text-align: center;
+            }
+            .team-slider .slick-dots li {
+              margin: 0 4px;
+            }
+            .team-slider .slick-dots li button {
+              width: 12px;
+              height: 12px;
+              border-radius: 50%;
+              background: #e5e7eb;
+              border: none;
+              opacity: 0.5;
+              transition: all 0.3s ease;
+            }
+            .team-slider .slick-dots li.slick-active button {
+              background: #f97316;
+              opacity: 1;
+              transform: scale(1.2);
+            }
+            .team-slider .slick-dots li button:before {
+              display: none;
+            }
+            
+            /* Mobile optimizations */
+            @media (max-width: 768px) {
+              .team-slider .slick-slide {
+                padding: 0 4px;
+              }
             }
           `}</style>
         </motion.div>
